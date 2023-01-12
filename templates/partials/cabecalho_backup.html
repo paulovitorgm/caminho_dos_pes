@@ -1,0 +1,20 @@
+{% load static %}
+<header class="cabecalho">
+    <div class="cabecalho-logo">
+        <img src="{% static 'img/logo-sem-fundo.png' %}" alt="Logo" >
+    </div>
+        {% if user.is_authenticated %}
+        <ul class="cabecalho-lista">
+            <li class="cabecalho-item"><a href=" {% url ''%} ">Home</a></li>
+            <li class="cabecalho-item"><a href=" {% url ''%} ">Agenda</a></li>
+            <li class="cabecalho-item"><a href=" {% url ''%} ">Cadastrar paciente</a></li>
+            <li class="cabecalho-item"><a href=" {% url ''%} ">Registrar procedimento</a></li>
+            <li class="cabecalho-item"><a href=" {% url ''%} ">Finanças</a></li>
+            <li class="cabecalho-item"><a href=" {% url ''%} ">Logout</a></li>       
+        {% else %}
+            <li class="cabecalho-item"><a href=" {% url ''%} ">Home</a></li>
+            <li class="cabecalho-item"><a href=" {% url ''%} ">Login</a></li>
+            <li class="cabecalho-item"><a href=" {% url ''%} ">Agenda</a></li>
+        </ul>
+        {% endif %}
+</header>

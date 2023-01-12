@@ -1,0 +1,67 @@
+/* cabeçalho / menu */
+/* .cabecalho {
+    width: auto;
+    padding: 30px;
+    background: linear-gradient(#248eff,#FFFFFF);
+
+} */
+.cabecalho-logo {
+    text-align: center;
+} 
+
+.cabecalho-lista {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    text-align: center;
+    background-color: #248eff;
+    border-radius: 10px;
+    box-sizing: border-box;
+    flex-flow: nowrap;
+    height: 60px;
+}
+
+.cabecalho-item {
+    font-size: 26px;
+    font-weight: 700;
+    text-transform: uppercase;
+    justify-self: center;
+    align-self: center;
+}
+
+/* Corpo*/
+
+main{ 
+   
+    background: linear-gradient(#FFFFFF,#248eff);
+}
+
+form{
+    
+    margin: auto 20%;
+    
+}
+
+label{
+    font-size: 26px;
+    font-weight: 700;
+    padding: 20px;
+    display: block;
+}
+input{
+    display: block;
+    border: solid #000000 5px;
+    font-size: 26px;
+
+}
+
+
+
+
+footer div {
+    text-align: center;
+} 
+
+form {
+    width: 600px;
+}
