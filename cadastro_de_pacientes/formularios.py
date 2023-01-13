@@ -1,17 +1,45 @@
 from django import forms
 from datetime import datetime
+from django.db import models
+from . models import Cadastro_de_paciente
+from . models import anamnese
+
+class Cadastro_de_paciente(forms.ModelForm):
+    
+    class Meta:
+        model = Cadastro_de_paciente
+        exclude = ['nome_completo']
 
 
-class Cadastro_de_paciente(forms.Form):
-    nome_paciente = forms.CharField(label='Nome do paciente', max_length=200)
-    sobrenome_paciente = forms.CharField(label='Sobrenome do paciente', max_length=200)
-    telefone = forms.CharField(label='Telefone', max_length=11)
-    primeiro_atendimento = forms.DateField(disabled=True ,initial=datetime.today)
-    email = forms.EmailField(label='Email', max_length=200)
-    foto = forms.FileField(label='Foto', required=False)
-    nome_completo = nome_paciente, sobrenome_paciente
-    nome_completo = forms.CharField(label='nome completo', initial=nome_completo)
+class Anamnese(forms.ModelForm):
+    class Meta:
+        model = anamnese.Anamnese
+        fields = ['acompanhamento_medico', 'especialidade', 'uso_medicacao', 'medicamento_em_uso','diabetico','hepatite', 'hiv','problemas_circulatorios','alergico', 'alergia_a', 'teve_cancer', 'tipo_cancer', 'gravidez', 'lactante', 'hipertensao', 'hipotensao', 'observacoes'
+        ]
+        labels = {'acompanhamento_medico':'Acompanhamento medico',
+        'especialidade':'Especialidade',
+        'uso_medicacao':'Faz uso de medicacao',
+        'medicamento_em_uso':'Medicamento em uso',
+        'diabetico' : 'Diabético',
+        'hepatite' : 'Hepatite',
+        'hiv' : 'HIV',
+        'problemas_circulatorios' : 'Problemas de ciculação',
+        'alergico' : 'Alergico',
+        'alergia_a' : 'Alergia a',
+        'teve_cancer' : 'Já teve câncer',
+        'tipo_cancer' : 'Tipo de câncer',
+        'gravidez' : 'Gestante',
+        'lactante' : 'Lactante',
+        'hipertensao' : 'Tem pressão alta',
+        'hipotensao' : 'Tem pressão baixa',
+        'observacoes' : 'Observações'
+        }
 
-   
-    # def __str__(self):
-    #     return self.nome_paciente, self.sobrenome_paciente
+
+
+
+
+
+
+
+

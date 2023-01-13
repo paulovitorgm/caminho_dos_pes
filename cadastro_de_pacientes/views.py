@@ -1,5 +1,6 @@
 from django.shortcuts import render, redirect
 from . formularios import Cadastro_de_paciente
+from . formularios import Anamnese
 from django.contrib.auth.models import User
 from django.contrib import messages
 
@@ -28,3 +29,10 @@ def cadastro_de_pacientes(request):
       return User.objects.filter(telefone=telefone).exists()
 
    return render(request,'cadastro_de_pacientes.html', contexto)
+
+def anamnese(request):
+   forms = Anamnese()
+   contexto = {
+      'anamnese' : forms
+   }
+   return render(request, 'anamnese.html', contexto)

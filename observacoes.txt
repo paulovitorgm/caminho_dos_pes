@@ -1,0 +1,2 @@
+- arrumar o redirecionamento em cadastro_de_pacientes - views
+- adicionar salvamento em cadastro_de_pacientes - views

@@ -1,10 +1,10 @@
 /* cabeçalho / menu */
-/* .cabecalho {
+.cabecalho {
     width: auto;
     padding: 30px;
     background: linear-gradient(#248eff,#FFFFFF);
 
-} */
+}
 .cabecalho-logo {
     text-align: center;
 } 
@@ -48,7 +48,7 @@ label{
     padding: 20px;
     display: block;
 }
-input{
+input, select{
     display: block;
     border: solid #000000 5px;
     font-size: 26px;
