@@ -1,6 +1,9 @@
 from django.db import models
+from .cadastro_pacientes import Cadastro_de_paciente
+
 
 class Anamnese(models.Model):
+    paciente = models.ForeignKey(Cadastro_de_paciente, on_delete=models.CASCADE)
     escolha = [ ('N' , 'Não'),('S' , 'Sim')]
     acompanhamento_medico = models.CharField(max_length= 3, choices= escolha, default=1)
     especialidade = models.CharField(max_length=100, blank=True)

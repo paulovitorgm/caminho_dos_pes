@@ -5,11 +5,15 @@
 {% include 'partials/_cabecalho.html' %}
 
 
-<form action="">
-    {% csrf_token %}
-    {{ anamnese }}
-</form>
 
+<div>
+    <form action="">
+        {% csrf_token %}
+        {{ anamnese }}
+        <input type="submit">
+        {% include 'partials/_alertas.html' %}
+    </form>
+</div>
 
 
 

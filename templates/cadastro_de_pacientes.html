@@ -6,10 +6,11 @@
 {% include 'partials/_cabecalho.html' %}
 
 
-    <form action="#" method="POST">
+    <form action="{% url 'cadastro' %}" method="POST">
         {% csrf_token %}
         {{ cadastro_de_pacientes }}
         <input type="submit">
+        {% include 'partials/_alertas.html' %}
     </form>
 
 

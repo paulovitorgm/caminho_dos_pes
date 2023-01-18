@@ -48,7 +48,7 @@ label{
     padding: 20px;
     display: block;
 }
-input, select{
+input, textarea ,select{
     display: block;
     border: solid #000000 5px;
     font-size: 26px;
@@ -66,4 +66,8 @@ footer div {
 form {
     width: 600px;
 }
+
+
+
+/* index  */
 

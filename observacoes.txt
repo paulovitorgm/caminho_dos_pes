@@ -1,2 +1,3 @@
 - arrumar o redirecionamento em cadastro_de_pacientes - views
 - adicionar salvamento em cadastro_de_pacientes - views
+- fazer a conexao da anamnese com o cadastratro do paciente
