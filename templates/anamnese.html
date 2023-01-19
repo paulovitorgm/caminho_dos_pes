@@ -7,9 +7,11 @@
 
 
 <div>
-
     <form action="">
         {% csrf_token %}
+        <input type="hidden" >
+        <h1>{{ paciente.nome_paciente }}
+        {{ paciente.sobrenome_paciente }}</h1>
         {{ anamnese }}
         <input type="submit">
         {% include 'partials/_alertas.html' %}

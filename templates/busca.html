@@ -4,21 +4,29 @@
 {% block content %}
 {% include 'partials/_cabecalho.html' %}
 
-<form action="{% url 'anamnese' %}" method="GET">
+<form action="{% url 'busca' %}" method="GET">
     {% csrf_token %}
     <label for="busca">Encontre um paciente</label>
     <input type="text" required placeholder="Ex: Paulo Vitor" name="busca">
     <input type="submit" value="Buscar">
 </form>
+<br><br>
+<hr><br><br>
 
     {% if busca %}
-        {% for resultado in busca %}
-        
-                <p><a href="">{{ resultado.id }}</a>
-                {{ resultado.nome_paciente }} 
-                {{ resultado.sobrenome_paciente }}</p>
-            
-        {% endfor %}
+        <form action="{% url 'anamnese' %}" method="POST">
+            {% csrf_token %}
+            <fieldset>
+                {% for resultado in busca %}
+                    <label for="{{ resultado.id }}">
+                        <input type="radio" value="{{ resultado.id }}" id="{{ resultado.id }}"  name="id_paciente" style="display: inline;" required>
+                        {{ resultado.nome_paciente}} 
+                        {{sobrenome_paciente }}
+                    </label>
+                {% endfor %}
+            </fieldset>
+         <br>       <input type="submit"value="Escolher">
+        </form>
     {% endif %}
 
 

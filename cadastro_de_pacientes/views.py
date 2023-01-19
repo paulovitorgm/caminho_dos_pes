@@ -46,30 +46,31 @@ def cadastro_de_pacientes(request):
 
 
 def busca(request):
-   lista_de_pacientes = Cadastro.objects.order_by('nome_paciente')
-   
-   if 'busca' in request.GET:
-      nome_a_buscar = request.GET['busca']
-      if busca:
-         lista_de_pacientes = lista_de_pacientes.filter(nome_paciente__icontains=nome_a_buscar)
-   contexto = {'busca': lista_de_pacientes}
-   return render(request, 'busca.html',contexto)
+   if request.user.is_authenticated:
+      lista_de_pacientes = Cadastro.objects.order_by('nome_paciente')
+      if 'busca' in request.GET:
+         nome_a_buscar = request.GET['busca']
+         if nome_a_buscar:
+            lista_de_pacientes = lista_de_pacientes.filter(nome_paciente__icontains = nome_a_buscar)
+            contexto = {'busca': lista_de_pacientes}
+            return render(request, 'busca.html',contexto)
+      else:
+          return render(request, 'busca.html')
+   else:
+      return redirect('login')
 
 
 def anamnese(request):
    if request.user.is_authenticated:
-      lista_de_pacientes = Cadastro.objects.order_by('nome_paciente')
-   
-      if 'busca' in request.GET:
-         nome_a_buscar = request.GET['busca']
-         if anamnese:
-            lista_de_pacientes = lista_de_pacientes.filter(nome_paciente__icontains=nome_a_buscar)
-   
+      if request.method == 'POST':
+         id_paciente = request.POST['id_paciente']
+         paciente = Cadastro.objects.get(id=id_paciente)
       formulario = Anamnese()
-      contexto = {'anamnese' : formulario,
-                  'busca': lista_de_pacientes
-                  }
-
+      
+      contexto ={ 'anamnese' : formulario,
+                  'id_paciente':id_paciente,
+                  'paciente' : paciente
+      }
       return render (request, 'anamnese.html', contexto)
    else:
       return redirect('login')
