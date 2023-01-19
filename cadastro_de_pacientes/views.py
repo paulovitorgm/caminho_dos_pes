@@ -47,6 +47,7 @@ def cadastro_de_pacientes(request):
 
 def busca(request):
    lista_de_pacientes = Cadastro.objects.order_by('nome_paciente')
+   
    if 'busca' in request.GET:
       nome_a_buscar = request.GET['busca']
       if busca:
@@ -57,11 +58,26 @@ def busca(request):
 
 def anamnese(request):
    if request.user.is_authenticated:
+      lista_de_pacientes = Cadastro.objects.order_by('nome_paciente')
+   
+      if 'busca' in request.GET:
+         nome_a_buscar = request.GET['busca']
+         if anamnese:
+            lista_de_pacientes = lista_de_pacientes.filter(nome_paciente__icontains=nome_a_buscar)
+   
       formulario = Anamnese()
-      contexto = {'anamnese' : formulario}
+      contexto = {'anamnese' : formulario,
+                  'busca': lista_de_pacientes
+                  }
+
       return render (request, 'anamnese.html', contexto)
    else:
       return redirect('login')
+
+
+
+
+
 
 def criar_usuario(request):
    verifica_se_logado(request)

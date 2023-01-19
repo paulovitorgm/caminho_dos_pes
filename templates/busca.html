@@ -1,0 +1,27 @@
+{% extends 'partials/_base.html' %}
+{% load static %}
+
+{% block content %}
+{% include 'partials/_cabecalho.html' %}
+
+<form action="{% url 'anamnese' %}" method="GET">
+    {% csrf_token %}
+    <label for="busca">Encontre um paciente</label>
+    <input type="text" required placeholder="Ex: Paulo Vitor" name="busca">
+    <input type="submit" value="Buscar">
+</form>
+
+    {% if busca %}
+        {% for resultado in busca %}
+        
+                <p><a href="">{{ resultado.id }}</a>
+                {{ resultado.nome_paciente }} 
+                {{ resultado.sobrenome_paciente }}</p>
+            
+        {% endfor %}
+    {% endif %}
+
+
+{% include 'partials/_footer.html' %}
+
+{% endblock %}
