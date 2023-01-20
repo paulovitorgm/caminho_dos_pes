@@ -7,16 +7,17 @@
 
 
 <div>
-    <form action="">
+    <form action="{% url 'ver_anamnese' %}" method="POST">
         {% csrf_token %}
-        <input type="hidden" >
-        <h1>{{ paciente.nome_paciente }}
-        {{ paciente.sobrenome_paciente }}</h1>
+        <input type="hidden" value="{{ id_paciente }}">
+        <h1>{{ nome.nome_paciente }}
+        {{ nome.sobrenome_paciente }}</h1>
         {{ anamnese }}
         <input type="submit">
         {% include 'partials/_alertas.html' %}
     </form>
 </div>
+
 
 
 

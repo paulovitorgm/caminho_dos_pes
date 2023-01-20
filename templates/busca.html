@@ -9,12 +9,13 @@
     <label for="busca">Encontre um paciente</label>
     <input type="text" required placeholder="Ex: Paulo Vitor" name="busca">
     <input type="submit" value="Buscar">
+    {% include 'partials/_alertas.html' %}
 </form>
 <br><br>
 <hr><br><br>
 
     {% if busca %}
-        <form action="{% url 'anamnese' %}" method="POST">
+        <form action="{% url 'preencher_anamnese' %}" method="GET">
             {% csrf_token %}
             <fieldset>
                 {% for resultado in busca %}
@@ -23,10 +24,11 @@
                         {{ resultado.nome_paciente}} 
                         {{sobrenome_paciente }}
                     </label>
-                {% endfor %}
-            </fieldset>
-         <br>       <input type="submit"value="Escolher">
-        </form>
+                    
+                    {% endfor %}
+                </fieldset>
+                <br>       <input type="submit"value="Escolher">
+            </form>
     {% endif %}
 
 

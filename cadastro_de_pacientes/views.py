@@ -2,6 +2,7 @@ from django.shortcuts import render, redirect, get_object_or_404
 from . formularios import Cadastro_de_paciente
 from .models.cadastro_pacientes import Cadastro_de_paciente as Cadastro
 from . formularios import Anamnese
+from . models.anamnese import Anamnese as Cadastrar_anamnese
 from django.contrib.auth.models import User
 from django.contrib.auth import login, logout, authenticate
 from django.contrib import messages
@@ -16,6 +17,7 @@ def cadastro_de_pacientes(request):
    if request.user.is_authenticated:
       formulario = Cadastro_de_paciente()
       contexto = {'cadastro_de_pacientes' : formulario}
+      
       if request.method == 'POST':
          nome_paciente = request.POST['nome_paciente']
          sobrenome_paciente = request.POST['sobrenome_paciente']
@@ -26,18 +28,23 @@ def cadastro_de_pacientes(request):
          if paciente_existente(telefone):
             messages.error(request,'Paciente já cadastrado.')
             return redirect('cadastro')
-         
-         paciente = Cadastro.objects.create(
-            nome_paciente = nome_paciente,
-            sobrenome_paciente = sobrenome_paciente,
-            telefone = telefone,
-            primeiro_atendimento = primeiro_atendimento,
-            email = email,
-            sexo = sexo
-         )
-         paciente.save()
-         messages.success(request, 'Paciente cadastrado com sucesso.')
-         return redirect('cadastro')
+         else:
+            paciente = Cadastro.objects.create(
+               nome_paciente = nome_paciente,
+               sobrenome_paciente = sobrenome_paciente,
+               telefone = telefone,
+               primeiro_atendimento = primeiro_atendimento,
+               email = email,
+               sexo = sexo
+            )
+            paciente.save()
+            paciente_anamnese = Cadastrar_anamnese.objects.create(paciente=paciente)
+            messages.success(request, 'Paciente cadastrado com sucesso.')
+            contexto = {
+               'paciente' : paciente,
+               'anamnese' : paciente_anamnese
+            }
+            return redirect('cadastro')
 
       return render(request, 'cadastro_de_pacientes.html', contexto)   
    else:
@@ -59,24 +66,73 @@ def busca(request):
    else:
       return redirect('login')
 
-
-def anamnese(request):
+def ver_anamnese(request):
    if request.user.is_authenticated:
       if request.method == 'POST':
-         id_paciente = request.POST['id_paciente']
-         paciente = Cadastro.objects.get(id=id_paciente)
-      formulario = Anamnese()
-      
-      contexto ={ 'anamnese' : formulario,
-                  'id_paciente':id_paciente,
-                  'paciente' : paciente
-      }
-      return render (request, 'anamnese.html', contexto)
+         acompanhamento_medico = request.POST['acompanhamento_medico']
+         especialidade = request.POST['especialidade']
+         uso_medicacao = request.POST['uso_medicacao']
+         medicamento_em_uso = request.POST['medicamento_em_uso']
+         diabetico = request.POST['diabetico']
+         hepatite = request.POST['hepatite']
+         hiv = request.POST['hiv']
+         problemas_circulatorios = request.POST['problemas_circulatorios']
+         alergico = request.POST['alergico']
+         alergia_a = request.POST['alergia_a']
+         teve_cancer = request.POST['teve_cancer']
+         tipo_cancer = request.POST['tipo_cancer']
+         gravidez = request.POST['gravidez']
+         lactante = request.POST['lactante']
+         hipertensao = request.POST['hipertensao']
+         hipotensao = request.POST['hipotensao']
+         observacoes = request.POST['observacoes']
+         
+         paciente = Cadastrar_anamnese.objects.update(
+            acompanhamento_medico = acompanhamento_medico,
+            especialidade = especialidade,
+            uso_medicacao = uso_medicacao,
+            medicamento_em_uso = medicamento_em_uso,
+            diabetico = diabetico,
+            hepatite = hepatite,
+            hiv = hiv,
+            problemas_circulatorios = problemas_circulatorios,
+            alergico = alergico,
+            alergia_a = alergia_a,
+            teve_cancer = teve_cancer,
+            tipo_cancer = tipo_cancer,
+            gravidez = gravidez,
+            lactante = lactante,
+            hipertensao = hipertensao,
+            hipotensao = hipotensao,
+            observacoes = observacoes
+         )
+
+         paciente = Cadastrar_anamnese.objects.get()
+
+         messages.success(request, 'Anamnese cadastrada.')
+         contexto = {'paciente' : paciente}
+
+         return render(request, 'ver_anamnese.html', contexto)
    else:
       return redirect('login')
 
 
-
+def preencher_anamnese(request):
+   if request.user.is_authenticated:
+      formulario = Anamnese()
+      if request.method == 'GET':
+         id_paciente = request.GET['id_paciente']
+         paciente = Cadastrar_anamnese.objects.get(paciente_id = id_paciente)
+         nome_paciente = Cadastro.objects.get(id = id_paciente)
+         contexto = {'anamnese' : formulario,
+                     'nome' : nome_paciente,
+                     'paciente' : paciente
+                     }
+         return render(request, 'anamnese.html', contexto)
+      else:
+         return redirect('busca')
+   else:
+      return redirect('login')
 
 
 
@@ -104,6 +160,7 @@ def criar_usuario(request):
       usuario.save()
       return redirect ('index')
    return render(request,'criar_usuario.html')
+
 
 
 
