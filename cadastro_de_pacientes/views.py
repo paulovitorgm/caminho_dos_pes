@@ -66,7 +66,24 @@ def busca(request):
    else:
       return redirect('login')
 
-def ver_anamnese(request):
+def preencher_anamnese(request):
+   if request.user.is_authenticated:
+      formulario = Anamnese()
+      if request.method == 'GET':
+         id_paciente = request.GET['id_paciente']
+         paciente = Cadastrar_anamnese.objects.get(paciente_id = id_paciente)
+         nome_paciente = Cadastro.objects.get(id = id_paciente)
+         contexto = {'anamnese' : formulario,
+                     'nome' : nome_paciente,
+                     'paciente' : paciente
+                     }
+         return render(request, 'anamnese.html', contexto)
+      else:
+         return redirect('busca')
+   else:
+      return redirect('login')
+
+def salvar_anamnese(request):
    if request.user.is_authenticated:
       if request.method == 'POST':
          acompanhamento_medico = request.POST['acompanhamento_medico']
@@ -109,28 +126,10 @@ def ver_anamnese(request):
 
          paciente = Cadastrar_anamnese.objects.get()
 
-         messages.success(request, 'Anamnese cadastrada.')
+         messages.success(request, 'Anamnese atualizada com sucesso.')
          contexto = {'paciente' : paciente}
 
-         return render(request, 'ver_anamnese.html', contexto)
-   else:
-      return redirect('login')
-
-
-def preencher_anamnese(request):
-   if request.user.is_authenticated:
-      formulario = Anamnese()
-      if request.method == 'GET':
-         id_paciente = request.GET['id_paciente']
-         paciente = Cadastrar_anamnese.objects.get(paciente_id = id_paciente)
-         nome_paciente = Cadastro.objects.get(id = id_paciente)
-         contexto = {'anamnese' : formulario,
-                     'nome' : nome_paciente,
-                     'paciente' : paciente
-                     }
-         return render(request, 'anamnese.html', contexto)
-      else:
-         return redirect('busca')
+         return render(request, 'busca.html', contexto)
    else:
       return redirect('login')
 

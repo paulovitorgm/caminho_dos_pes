@@ -6,8 +6,8 @@
 
 
 
-<div>
-    <form action="{% url 'ver_anamnese' %}" method="POST">
+
+    <form action="{% url 'salvar_anamnese' %}" method="POST">
         {% csrf_token %}
         <input type="hidden" value="{{ id_paciente }}">
         <h1>{{ nome.nome_paciente }}
@@ -16,7 +16,7 @@
         <input type="submit">
         {% include 'partials/_alertas.html' %}
     </form>
-</div>
+
 
 
 
