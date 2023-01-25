@@ -73,7 +73,8 @@ def preencher_anamnese(request):
          id_paciente = request.GET['id_paciente']
          paciente = Cadastrar_anamnese.objects.get(paciente_id = id_paciente)
          nome_paciente = Cadastro.objects.get(id = id_paciente)
-         contexto = {'anamnese' : formulario,
+         contexto = {
+                     'anamnese' : formulario,
                      'nome' : nome_paciente,
                      'paciente' : paciente
                      }
@@ -83,7 +84,7 @@ def preencher_anamnese(request):
    else:
       return redirect('login')
 
-def salvar_anamnese(request):
+def salvar_anamnese(request, paciente_id):
    if request.user.is_authenticated:
       if request.method == 'POST':
          acompanhamento_medico = request.POST['acompanhamento_medico']
@@ -133,7 +134,15 @@ def salvar_anamnese(request):
    else:
       return redirect('login')
 
-
+def visualizar_anamnese(request, paciente_id):
+   anamnese = get_object_or_404(Cadastrar_anamnese, id = paciente_id)
+   paciente = anamnese.paciente
+   contexto = {
+      'anamnese' : anamnese,
+      'paciente' : paciente,
+      
+   }
+   return render(request, 'visualizar_anamnese.html', contexto)
 
 def criar_usuario(request):
    verifica_se_logado(request)

@@ -1,7 +1,7 @@
 {% extends 'partials/_base.html' %}
 {% load static %}
-
 {% block content %}
+
 {% include 'partials/_cabecalho.html' %}
 
 
@@ -9,7 +9,7 @@
 
     <form action="{% url 'salvar_anamnese' %}" method="POST">
         {% csrf_token %}
-        <input type="hidden" value="{{ id_paciente }}">
+        <input type="hidden" value="{{ id_paciente }}"> {{ id_paciente }}
         <h1>{{ nome.nome_paciente }}
         {{ nome.sobrenome_paciente }}</h1>
         {{ anamnese }}
