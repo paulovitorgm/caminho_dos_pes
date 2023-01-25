@@ -31,9 +31,8 @@
 
 /* Corpo*/
 
-main{ 
-   
-    background: linear-gradient(#FFFFFF,#248eff);
+main{
+    background-color: #FFFFFF;
 }
 
 form{

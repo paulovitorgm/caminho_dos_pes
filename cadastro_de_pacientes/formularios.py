@@ -1,6 +1,4 @@
 from django import forms
-from datetime import datetime
-from django.db import models
 from . models import Cadastro_de_paciente
 from . models import anamnese
 
