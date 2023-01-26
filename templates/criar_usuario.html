@@ -3,30 +3,30 @@
 
 {% block content %}
 {% include 'partials/_cabecalho.html' %}
+<main>
+    <form action="{% url 'criar_usuario' %}" method="POST">
+        {% csrf_token %}
+        
+        <label for="nome">Nome</label>
+        <input type="text" name="nome" required>
+        
+        <label for="sobrenome">Sobrenome</label>
+        <input type="text" name="sobrenome"required>
+        
+        <label for="email" >Email</label>
+        <input type="email"name="email"required>
+        
+        <label for="senha">Senha</label>
+        <input type="password" name="senha"required>
+        
+        <label for="senha2">Repita a senha</label>
+        <input type="password" name="senha2"required>
 
-<form action="{% url 'criar_usuario' %}" method="POST">
-    {% csrf_token %}
-    
-    <label for="nome">Nome</label>
-    <input type="text" name="nome" required>
-    
-    <label for="sobrenome">Sobrenome</label>
-    <input type="text" name="sobrenome"required>
-    
-    <label for="email" >Email</label>
-    <input type="email"name="email"required>
-    
-    <label for="senha">Senha</label>
-    <input type="password" name="senha"required>
-    
-    <label for="senha2">Repita a senha</label>
-    <input type="password" name="senha2"required>
+        <input type="submit" value="Criar">
 
-    <input type="submit" value="Criar">
-
-    {% include 'partials/_alertas.html' %}
-</form>
-
+        {% include 'partials/_alertas.html' %}
+    </form>
+</main>
 
 
 {% include 'partials/_footer.html' %}

@@ -20,6 +20,7 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = [
+    'usuarios',
     'cadastro_de_pacientes',
     'django.contrib.admin',
     'django.contrib.auth',

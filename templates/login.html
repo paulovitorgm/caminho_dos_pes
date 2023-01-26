@@ -3,22 +3,22 @@
 
 {% block content %}
 {% include 'partials/_cabecalho.html' %}
+<main>
+    <form action="{% url 'login' %}" method="POST">
+        {% csrf_token %}
 
-<form action="{% url 'login' %}" method="POST">
-    {% csrf_token %}
-
-    <label for="email" >Email</label>
-    <input type="email"name="email"required>
-    
-    <label for="senha">Senha</label>
-    <input type="password" name="senha"required>
+        <label for="email" >Email</label>
+        <input type="email"name="email"required>
+        
+        <label for="senha">Senha</label>
+        <input type="password" name="senha"required>
 
 
-    <input type="submit" value="Fazer login">
+        <input type="submit" value="Fazer login">
 
-    {% include 'partials/_alertas.html' %}
-</form>
-
+        {% include 'partials/_alertas.html' %}
+    </form>
+</main>
 
 
 {% include 'partials/_footer.html' %}

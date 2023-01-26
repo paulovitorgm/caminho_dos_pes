@@ -9,8 +9,7 @@ from django.contrib import messages
 # from django.contrib.auth.decorators import login_required   
 #  DESENVOLVER  
 
-def index(request):
-   return render(request, 'index.html')
+
 
 
 def cadastro_de_pacientes(request):
@@ -99,29 +98,6 @@ def salvar_anamnese(request, anamnese_id):
    else:
       return redirect('login')
 
-         
-         # paciente = Cadastrar_anamnese.objects.update(
-         #    acompanhamento_medico = acompanhamento_medico,
-         #    especialidade = especialidade,
-         #    uso_medicacao = uso_medicacao,
-         #    medicamento_em_uso = medicamento_em_uso,
-         #    diabetico = diabetico,
-         #    hepatite = hepatite,
-         #    hiv = hiv,
-         #    problemas_circulatorios = problemas_circulatorios,
-         #    alergico = alergico,
-         #    alergia_a = alergia_a,
-         #    teve_cancer = teve_cancer,
-         #    tipo_cancer = tipo_cancer,
-         #    gravidez = gravidez,
-         #    lactante = lactante,
-         #    hipertensao = hipertensao,
-         #    hipotensao = hipotensao,
-         #    observacoes = observacoes
-            
-         # )
-
-
 def anamnese(request, paciente_id):
    anamnese = get_object_or_404(Cadastrar_anamnese, paciente_id = paciente_id)
    paciente = anamnese.paciente
@@ -130,58 +106,6 @@ def anamnese(request, paciente_id):
       'paciente' : paciente,
    }
    return render(request, 'anamnese.html', contexto)
-
-def criar_usuario(request):
-   verifica_se_logado(request)
-   if request.method =='POST':
-      nome = request.POST['nome']
-      sobrenome = request.POST['sobrenome']
-      email = request.POST['email']
-      senha = request.POST['senha']
-      senha2 = request.POST['senha2']
-      usuario.first_name = nome
-      usuario.last_name = sobrenome
-      
-      if  senhas_sao_diferentes(senha, senha2):
-         messages.error(request, 'As senhas não são iguais.')
-         return redirect('criar_usuario')
-      
-      if usuario_existente(email):
-         messages.error(request, 'Email já cadastrado.')
-         return redirect('criar_usuario')
-      
-
-      usuario = User.objects.create_user(username=email, email=email, password=senha)
-      usuario.save()
-      return redirect ('index')
-   return render(request,'criar_usuario.html')
-
-
-
-
-def fazer_login(request):
-   if request.user.is_authenticated:
-      messages.error(request, 'Você já fez login.')
-      return redirect('dashboard')
-   if request.method == 'POST':
-      usuario = request.POST['email']
-      senha = request.POST['senha']
-      
-      if campo_vazio(usuario) or campo_vazio(senha):
-         messages.error(request, 'Os campos email e senha não podem ficar em branco.')
-         return redirect('login')
-      user = authenticate(request, username = usuario, password = senha)
-      
-      if user is not None:
-         login(request, user)
-         return redirect ('index')
-
-   return render(request,'login.html')
-
-
-def fazer_logout(request):
-   logout(request)
-   return redirect('index')
 
 
 

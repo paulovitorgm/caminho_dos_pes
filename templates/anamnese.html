@@ -4,8 +4,7 @@
 {% block content %}
 {% include 'partials/_cabecalho.html' %}
 
-
-
+<main>
     <section style=" margin: auto 150px;">
         <form action="{% url 'salvar_anamnese' anamnese.id %}" method="POST">
             {% csrf_token %}   
@@ -187,7 +186,7 @@
             <input type="submit" value="Salvar">
         </form>
     </section>
-
+</main>
 {% include 'partials/_alertas.html' %}
 
 
