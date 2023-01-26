@@ -8,7 +8,13 @@
 <main>
     <form action="{% url 'cadastro' %}" method="POST">
         {% csrf_token %}
-        {{ cadastro_de_pacientes }}
+
+        {% for campo in cadastro_de_pacientes %}
+                <div>
+                    <label for="{{ field.id_for_label}}">{{ campo.label }}</label>
+                    {{ campo }}
+                </div>
+        {% endfor %}
         <input type="submit">
         {% include 'partials/_alertas.html' %}
     </form>

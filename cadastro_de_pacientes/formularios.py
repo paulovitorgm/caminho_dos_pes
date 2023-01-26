@@ -3,11 +3,13 @@ from . models import Cadastro_de_paciente
 from . models import anamnese
 
 class Cadastro_de_paciente(forms.ModelForm):
-    
     class Meta:
         model = Cadastro_de_paciente
         fields = '__all__'
-
+        labels = {
+            'nome_paciente':'Nome do paciente', 'sobrenome_paciente': 'Sobrenome do paciente', 'telefone':'Telefone', 'primeiro_atendimento':'Data do primeiro atendimento', 'email':'Email','sexo':'Sexo'
+        }
+        
 
 
 class Anamnese(forms.ModelForm):

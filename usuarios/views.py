@@ -4,6 +4,8 @@ from django.shortcuts import render, redirect
 from django.contrib.auth.models import User
 from django.contrib import messages
 
+
+
 def index(request):
    return render(request, 'index.html')
 
@@ -66,7 +68,7 @@ def campo_vazio(campo):
 def verifica_se_logado(request):
    if request.user.is_authenticated:
       messages.error(request, 'Você já fez login.')
-      return redirect('dashboard')
+      return redirect('index')
 
 def senhas_sao_diferentes(senha, senha2):
    return senha != senha2
