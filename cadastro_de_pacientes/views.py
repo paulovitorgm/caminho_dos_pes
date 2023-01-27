@@ -4,10 +4,8 @@ from .models.cadastro_pacientes import Cadastro_de_paciente as Cadastro
 from . formularios import Anamnese
 from . models.anamnese import Anamnese as Cadastrar_anamnese
 from django.contrib.auth.models import User
-from django.contrib.auth import login, logout, authenticate
 from django.contrib import messages
-# from django.contrib.auth.decorators import login_required   
-#  DESENVOLVER  
+
 
 
 

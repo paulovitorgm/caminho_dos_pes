@@ -6,5 +6,5 @@ urlpatterns = [
     path('pacientes/', include('cadastro_de_pacientes.urls')),
     path('', include('usuarios.urls')),
     path('financeiro/', include('financeiro.urls')),
-    # path('cadastro_pacientes', include('cadastro_de_pacientes.urls')),
+    
 ]

@@ -2,7 +2,7 @@
 <header class="cabecalho">
 
     <div class="cabecalho-logo">
-        <img src="{% static 'img/logo-sem-fundo.png' %}" alt="Logo" >
+       <a href="{% url 'index' %}"><img src="{% static 'img/logo-sem-fundo.png' %}" alt="Logo" ></a>
     </div>
         <ul class="cabecalho-lista">
 
@@ -11,7 +11,7 @@
                 <li class="cabecalho-item"><a href="{% url 'index' %}">Home</a></li>
                 <li class="cabecalho-item"><a href="{% url 'cadastro' %}">Cadastrar paciente</a></li>
                 <li class="cabecalho-item"><a href="{% url 'busca' %}">Anamnese</a></li>
-                <li class="cabecalho-item"><a href="{% url 'registar_procedimento' %}">Registrar procedimento</a></li>
+                <li class="cabecalho-item"><a href="{% url 'registrar_procedimento' %}">Registrar venda</a></li>
                 <li class="cabecalho-item"><a href="">Finanças</a></li>
                 <li class="cabecalho-item"><a href="{% url 'logout' %}">Logout</a></li>                   
             

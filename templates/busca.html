@@ -3,18 +3,19 @@
 
 {% block content %}
 {% include 'partials/_cabecalho.html' %}
+<main>
 
-<form action="{% url 'busca' %}" method="GET">
-    {% csrf_token %}
-    <label for="busca">Encontre um paciente</label>
-    <input type="text" required placeholder="Ex: Paulo Vitor" name="busca">
-    <input type="submit" value="Buscar">
-    {% include 'partials/_alertas.html' %}
-</form>
+    <form action="{% url 'busca' %}" method="GET">
+        {% csrf_token %}
+        <label for="busca">Encontre um paciente</label>
+        <input type="text" required placeholder="Ex: Paulo Vitor" name="busca">
+        <input type="submit" value="Buscar">
+        {% include 'partials/_alertas.html' %}
+    </form>
 <br><br>
 <hr><br><br>
 
-<main>
+
     <section>
         {% if busca %}
             {% for resultado in busca %}

@@ -5,14 +5,20 @@
 {% include 'partials/_cabecalho.html' %}
 
 <main>
-
+    <form action="{% url 'registrar_procedimento' %}" method="POST">
+        {% csrf_token %}
     
-{{ vendas }}
 
+        {% include 'partials/_alertas.html' %}  
 
-
-
+        {{ venda }}
+        
+        <input type="submit" value="Salvar">
+        <input type="reset" value="Limpar">
+    </form>
+    
+    
 </main>
-{% include 'partials/_footer.html' %}
 
+{% include 'partials/_footer.html' %}
 {% endblock %}
