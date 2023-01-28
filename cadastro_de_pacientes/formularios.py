@@ -1,19 +1,26 @@
 from django import forms
-from . models import Cadastro_de_paciente
+from . models.cadastro_pacientes import Cadastro_de_paciente as Cadastro
 from . models import anamnese
 
 class Cadastro_de_paciente(forms.ModelForm):
+    nome_paciente = forms.CharField(label='Nome do paciente', max_length=200, widget=forms.TextInput(attrs={'placeholder':'Ex: Paulo'}))
+    sobrenome_paciente = forms.CharField(label='Nome do paciente', max_length=200, widget=forms.TextInput(attrs={'placeholder':'Ex: da Silva'}))
+    telefone = forms.CharField(label='Telefone', max_length=11, widget=forms.TextInput(attrs={'placeholder':'(XX) XXXXX-XXXX'}))
+    primeiro_atendimento = forms.DateField(label='Data do primeiro atendimento', required=False, widget=forms.DateInput(attrs={'type':'date'}),)
+    email = forms.EmailField(label='Email', max_length=150, required=False ,widget=forms.EmailInput(attrs={'placeholder':'email@email.com'}))
+    sexo_op = [('M' , 'Masculino'),('F' , 'Feminino')]
+    sexo = forms.ChoiceField(label='Sexo', choices=sexo_op)
+    
+    
     class Meta:
-        model = Cadastro_de_paciente
-        fields = '__all__'
-        labels = {
-            'nome_paciente':'Nome do paciente', 'sobrenome_paciente': 'Sobrenome do paciente', 'telefone':'Telefone', 'primeiro_atendimento':'Data do primeiro atendimento', 'email':'Email','sexo':'Sexo'
-        }
+        model = Cadastro
+        exclude = ['']
+       
         
 
 
 class Anamnese(forms.ModelForm):
-    
+
     class Meta:
         model = anamnese.Anamnese
         

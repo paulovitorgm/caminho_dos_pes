@@ -25,7 +25,7 @@
                     {% endif %}
                 </select>
                 <label for="especialidade"> Especialide:</label>
-                <input type="text" value="{{ anamnese.especialidade }}" name="especialidade">
+                <input type="text" value="{{ anamnese.especialidade }}" name="especialidade" placeholder="Ex: Ortopedista">
             </div>
 
             <div>    
@@ -40,7 +40,7 @@
                     {% endif %}
                 </select>
                 <label for="especialidade"> Nome do medicamento:</label>
-                <input type="text" value="{{ anamnese.medicamento_em_uso }}" name="medicamento_em_uso"> {{ anamnese.medicamento_em_uso }}
+                <input type="text" value="{{ anamnese.medicamento_em_uso }}" name="medicamento_em_uso" placeholder="Ex: Losartana"> {{ anamnese.medicamento_em_uso }}
             </div>
 
             <div>    
@@ -107,7 +107,7 @@
                     {% endif %}
                 </select>
                 <label for="alergia_a">Alergia a:</label>
-                <input type="text" value="{{ anamnese.alergia_a }}" name="alergia_a">
+                <input type="text" value="{{ anamnese.alergia_a }}" name="alergia_a" placeholder="Ex: Camarão">
             </div>
 
             <div>    
@@ -122,7 +122,7 @@
                     {% endif %}
                 </select>
                 <label for="tipo_cancer">Tipo de câncer:</label>
-                <input type="text" value="{{ anamnese.tipo_cancer }}" name="tipo_cancer">
+                <input type="text" value="{{ anamnese.tipo_cancer }}" name="tipo_cancer" placeholder="Ex: Pele">
             </div>
 
             <div>    
@@ -179,7 +179,7 @@
 
             <div>
                 <label for="observacoes">Observações:</label>
-                <textarea name="observacoes" value="{{ anamnese.observacoes }}" >{{ anamnese.observacoes }}</textarea>
+                <textarea name="observacoes" value="{{ anamnese.observacoes }}" placeholder="Ex: Paciente chegou com dedo inflamado.">{{ anamnese.observacoes }}</textarea>
             </div>
 
  

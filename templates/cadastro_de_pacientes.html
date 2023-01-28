@@ -8,6 +8,8 @@
 <main>
     <form action="{% url 'cadastro' %}" method="POST">
         {% csrf_token %}
+        
+        {% include 'partials/_alertas.html' %}
 
         {% for campo in cadastro_de_pacientes %}
                 <div>
@@ -16,7 +18,6 @@
                 </div>
         {% endfor %}
         <input type="submit">
-        {% include 'partials/_alertas.html' %}
     </form>
 </main>
 

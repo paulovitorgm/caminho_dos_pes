@@ -22,9 +22,21 @@ def cadastro_de_pacientes(request):
          primeiro_atendimento = request.POST['primeiro_atendimento']
          email = request.POST['email']
          sexo = request.POST['sexo']
+         if campo_vazio(nome_paciente):
+            messages.error(request, 'O campo do nome não pode ficar em vazio.')
+            return redirect('cadastro')
+         if campo_vazio(sobrenome_paciente):
+            messages.error(request, 'O campo do sobrenome não pode ficar em vazio.')
+            return redirect('cadastro')
+         if campo_vazio(telefone):
+            messages.error(request, 'O campo do telefone não pode ficar em vazio.')
+            return redirect('cadastro')
+         if verifica_se_somente_numeros(telefone):
+            messages.error(request,'O campo de telefone deve conter apenas números. Tente novamente.')
+            return redirect('cadastro')
          if paciente_existente(telefone):
             messages.error(request,'Paciente já cadastrado.')
-            return redirect('cadastro')
+            return redirect('cadastro')   
          else:
             paciente = Cadastro.objects.create(
                nome_paciente = nome_paciente,
@@ -125,3 +137,6 @@ def usuario_existente(email):
 
 def paciente_existente(telefone):
    return Cadastro.objects.filter(telefone=telefone).exists()
+
+def verifica_se_somente_numeros(campo):
+   return not campo.isnumeric()
