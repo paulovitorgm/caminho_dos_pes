@@ -1,8 +1,10 @@
 from django.shortcuts import render, redirect
-from .formulario import Venda
-from django.contrib.auth import authenticate
+from .formularios import Venda
 from django.contrib import messages
 from .models.registrar_venda import Registrar_venda
+from .models.registrar_fornecedores import Registrar_fornecedor
+from .formularios import Fornecedor
+
 
 def registar_procedimento(request):
     if request.user.is_authenticated:
@@ -34,6 +36,21 @@ def registar_procedimento(request):
     else:
         return redirect('login')
 
+
+def registrar_venda(request):
+    pass
+def registrar_fornecedor(request):
+    fornecedor = Fornecedor()
+    contexto = {'registrar_fornecedor':fornecedor}
+    return render(request,'registrar_fornecedor.html',contexto)
+
+    
+def registrar_despesa(request):
+    pass
+
+
+
+
+
 def campo_vazio(campo):
     return not campo.strip()
-

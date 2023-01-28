@@ -1,1 +1,3 @@
-from .registrar_venda import *
+from .registrar_venda import Registrar_venda
+from .registrar_fornecedores import Registrar_fornecedor
+from .registrar_despesas import Registrar_despesa
