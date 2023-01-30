@@ -1,7 +1,7 @@
 from django import forms
 from django.forms.widgets import DateInput
 from .models.registrar_venda import Registrar_venda
-from .models.registrar_fornecedores import Registrar_fornecedor
+from .models.registrar_despesas import Registrar_despesa
 
 
 
@@ -19,14 +19,15 @@ class Venda(forms.ModelForm):
         exclude = ['']
         
 
-
-
-class Fornecedor(forms.ModelForm):
-    cnpj = forms.CharField(label='CNPJ',required=False, widget=forms.TextInput({'placeholder':'XX. XXX. XXX/0001-XX'}),max_length=14)
-    razao_social = forms.CharField(label='Razão social', widget=forms.TextInput(attrs={'placeholder':'Ex: Coca Cola Indústrias Ltda'}),max_length=150)
-    nome_fantasia = forms.CharField(label='Nome fantasia', widget=forms.TextInput(attrs={'placeholder':'Ex: Coca Cola'}),max_length=100)
-    telefone = forms.CharField(label='Telefone', widget=forms.TextInput(attrs={'placeholder':'(XX) XXXXX-XXXX'}),max_length=11)
+class Despesa(forms.ModelForm):
+    fornecedor = forms.CharField(label='Nome do fornecedor', widget=forms.TextInput(attrs={'placeholder':'Ex: Potus hospitalar'}))
+    data = forms.DateField(label='Data da compra', widget=forms.DateInput(attrs={'type':'date'}))
+    produtos = forms.CharField(label='Produtos', widget=forms.TextInput(attrs={'placeholder':'Ex: Mille extreme'}))
+    total = forms.DecimalField(label='Valor total', max_digits=10,decimal_places=2, min_value=0, widget=forms.NumberInput(attrs={'placeholder':'Ex: 100,00'}))
+    meios_de_pagamento = [('cred','Crédito'),('deb','Débito'),('pix','Pix'), ('din', 'Dinheiro')]
+    pagamento = forms.ChoiceField(label='Forma de pagamento', choices=meios_de_pagamento)
+    observacoes = forms.CharField(label='Observações', required=False, widget=forms.Textarea(attrs={'placeholder':'Ex: Produto "x" mudou a composição.'}))
 
     class Meta:
-        model = Registrar_fornecedor
+        model = Registrar_despesa
         exclude = ['']

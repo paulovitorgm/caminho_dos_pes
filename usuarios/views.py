@@ -3,7 +3,7 @@ from django.contrib.auth import login, logout, authenticate
 from django.shortcuts import render, redirect
 from django.contrib.auth.models import User
 from django.contrib import messages
-
+from .formulario import Formulario_usuario
 
 
 def index(request):
@@ -35,6 +35,8 @@ def fazer_logout(request):
 
 def criar_usuario(request):
    verifica_se_logado(request)
+   formulario = Formulario_usuario()
+   contexto = {'formulario' : formulario}
    if request.method =='POST':
       nome = request.POST['nome']
       sobrenome = request.POST['sobrenome']
@@ -54,7 +56,7 @@ def criar_usuario(request):
       usuario.save()
 
       return redirect ('login')
-   return render(request,'criar_usuario.html')
+   return render(request,'criar_usuario.html', contexto)
 
 
 

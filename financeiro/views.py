@@ -2,8 +2,8 @@ from django.shortcuts import render, redirect
 from .formularios import Venda
 from django.contrib import messages
 from .models.registrar_venda import Registrar_venda
-from .models.registrar_fornecedores import Registrar_fornecedor
-from .formularios import Fornecedor
+from .models.registrar_despesas import Registrar_despesa
+from .formularios import Despesa
 
 
 def registar_procedimento(request):
@@ -39,14 +39,34 @@ def registar_procedimento(request):
 
 def registrar_venda(request):
     pass
-def registrar_fornecedor(request):
-    fornecedor = Fornecedor()
-    contexto = {'registrar_fornecedor':fornecedor}
-    return render(request,'registrar_fornecedor.html',contexto)
+
 
     
 def registrar_despesa(request):
-    pass
+    if request.user.is_authenticated:
+        despesa =  Despesa()
+        contexto = {'despesa' : despesa}
+        if request.method == 'POST':
+            fornecedor = request.POST['fornecedor']
+            data = request.POST['data']
+            produtos = request.POST['produtos']
+            total = request.POST['total']
+            pagamento = request.POST['pagamento']
+            observacoes = request.POST['observacoes']
+            registro_de_despesa = Registrar_despesa.objects.create(
+                fornecedor = fornecedor,
+                data = data,
+                produtos = produtos,
+                total = total,
+                pagamento = pagamento,
+                observacoes = observacoes,
+            )
+            registro_de_despesa.save()
+            messages.success(request, 'Despesa registrada com sucesso.')
+            return redirect('registrar_despesa')
+        return render (request, 'registrar_despesa.html',contexto)
+    else:
+        return redirect('login')
 
 
 

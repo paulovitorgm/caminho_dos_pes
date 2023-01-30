@@ -1,28 +1,21 @@
 {% extends 'partials/_base.html' %}
 {% load static %}
-
 {% block content %}
 {% include 'partials/_cabecalho.html' %}
 <main>
     <form action="{% url 'criar_usuario' %}" method="POST">
         {% csrf_token %}
         
-        <label for="nome">Nome</label>
-        <input type="text" name="nome" required>
-        
-        <label for="sobrenome">Sobrenome</label>
-        <input type="text" name="sobrenome"required>
-        
-        <label for="email" >Email</label>
-        <input type="email"name="email"required>
-        
-        <label for="senha">Senha</label>
-        <input type="password" name="senha"required>
-        
-        <label for="senha2">Repita a senha</label>
-        <input type="password" name="senha2"required>
+        {% for campo in formulario %}
+        <div>
+            <label for="{{ field.id_for_label }}">{{ campo.label }}</label>
+            {{ campo }}
 
-        <input type="submit" value="Criar">
+        </div>
+
+        {% endfor %}
+        <input type="submit" value="Criar" class="botao-salvar">
+        <input type="submit" value="Limpar" class="botao-limpar">
 
         {% include 'partials/_alertas.html' %}
     </form>
