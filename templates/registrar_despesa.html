@@ -10,14 +10,14 @@
         {% include 'partials/_alertas.html' %}
         
         {% for campo in despesa %}
-        <div>
+        
             <label for="{{ field.id_for_label}}">{{ campo.label }}</label>
             {{ campo }}
-        </div>
+        
         
         {% endfor %}
 
-        <input type="submit" value="Limpar" class="botao-limpar">
+        <input type="reset" value="Limpar" class="botao-limpar">
         <input type="submit" value="Salvar" class="botao-salvar">
 
     </form>

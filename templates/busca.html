@@ -4,26 +4,33 @@
 {% block content %}
 {% include 'partials/_cabecalho.html' %}
 <main>
+    {% include 'partials/_alertas.html' %}
+    <section class="resultado__busca">
+        {% if busca %}
+            <ul>    
+                {% for resultado in busca %}
+                    <a href="{% url 'anamnese' resultado.id%}">
+                        <li class="item__lista--busca">
+                            {{ resultado.nome_paciente}} 
+                            {{ resultado.sobrenome_paciente }}
+                        </li>
+                    </a>
+                   
+                {% endfor %}
+            </ul>
+        {% endif %}
+    </section>
 
     <form action="{% url 'busca' %}" method="GET">
         {% csrf_token %}
-        <label for="busca">Encontre um paciente</label>
-        <input type="text" required placeholder="Ex: Paulo Vitor" name="busca">
-        <input type="submit" value="Buscar">
-        {% include 'partials/_alertas.html' %}
+        <div class="div-formulario">
+            <label for="busca">Encontre um paciente</label>
+            <input type="text" required placeholder="Ex: Paulo Vitor" name="busca">
+            <input type="submit" value="Buscar" class="botao-salvar">
+        </div>
     </form>
-<br><br>
-<hr><br><br>
-
-
-    <section>
-        {% if busca %}
-            {% for resultado in busca %}
-            <a href="{% url 'anamnese' resultado.id%}">{{ resultado.nome_paciente}} 
-                {{sobrenome_paciente }}</a>
-            {% endfor %}
-        {% endif %}
-    </section>
+    
+    
 </main>
         
 

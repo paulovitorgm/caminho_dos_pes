@@ -7,15 +7,15 @@
         {% csrf_token %}
         
         {% for campo in formulario %}
-        <div>
-            <label for="{{ field.id_for_label }}">{{ campo.label }}</label>
+       
+            <label for="{{ campo.id_for_label }}">{{ campo.label }}</label>
             {{ campo }}
 
-        </div>
+
 
         {% endfor %}
+        <input type="reset" value="Limpar" class="botao-limpar">
         <input type="submit" value="Criar" class="botao-salvar">
-        <input type="submit" value="Limpar" class="botao-limpar">
 
         {% include 'partials/_alertas.html' %}
     </form>

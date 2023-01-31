@@ -1,5 +1,6 @@
 {% extends 'partials/_base.html' %}
 {% load static %}
+
 {% block content %}
 {% include 'partials/_cabecalho.html' %}
 
@@ -11,13 +12,13 @@
         {% include 'partials/_alertas.html' %}
 
         {% for campo in cadastro_de_pacientes %}
-                <div>
+                
                     <label for="{{ campo.id_for_label}}">{{ campo.label }}</label>
                     {{ campo }}
-                </div>
+         
         {% endfor %}
         <div class="div-botoes">
-            <input type="submit" value="Limpar" class="botao-limpar">
+            <input type="reset" value="Limpar" class="botao-limpar">
             <input type="submit" value="Salvar" class="botao-salvar">
         </div>
     </form>

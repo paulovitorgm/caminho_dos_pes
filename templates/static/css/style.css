@@ -22,7 +22,7 @@
 }
 
 .cabecalho-item {
-    font-size: 26px;
+    font-size: 22px;
     font-weight: 700;
     text-transform: uppercase;
     justify-self: center;
@@ -35,56 +35,51 @@ main{
     background-color: #FFFFFF;
 }
 
-form{
-    
-    margin: auto 20%;
-    
+form {
+    margin: auto;
+    width: 600px;
+    display: grid;
+    grid-template-columns: auto auto;
+    grid-template-rows: repeat(8fr);
+    gap: 20px;
 }
 
-form div {
-    border: #000000 1px solid;
-    border-radius: 10px;
+.div-formulario {
     text-align: center;
     margin-bottom: 20px;
+    padding: 10px;
+    position:  static;
+    grid-column: span 2;
 }
-
 
 label{
-    font-size: 26px;
+    font-size: 22px;
     font-weight: 700;
-    padding: 20px;
+    padding: 10px;
     display: block;
 }
+
 input, textarea ,select{
-    display: block;
+    display: inline;
     border: solid #000000 2px;
-    font-size: 26px;
-
-}
-
-
-
-
-footer div {
+    border-radius: 6px;
+    font-size: 20px;
+    width: 90%;
     text-align: center;
-    
-} 
-
-form {
-    width: 600px;
+    padding: 10px;
 }
 
 .div-botoes{
     margin: 20px;
     display: flex;
-
-    align-items: flex-end;
+    justify-content: center;
+    grid-column: span 2;
 }
 
 .botao-salvar{
     color: #FFFFFF;
     font-weight: 700;
-    border-radius: 5px;
+    border-radius: 6px;
     background-color: #00ff55;
     border: none;
     padding: 10px 20px;
@@ -101,5 +96,64 @@ form {
     margin: 10px;
 }
 
-/* index  */
 
+.alerta__success{
+    margin: auto;
+    width: 80%;
+    color: #000000;
+    font-size: 1.2rem;
+    font-weight: 600;
+    grid-column: span 2;
+    background-color: #95fdb4;
+    border: solid 1px #39d167;
+    padding: 15px;
+    border-radius: 6px;
+    opacity: 0.8;
+}
+
+.alerta__error {
+    margin: auto;
+    width: 80%;
+    color: #FFFFFF;
+    font-size: 1.2rem;
+    font-weight: 600;
+    grid-column: span 2;
+    background-color: #ff0000;
+    padding: 20px;
+    border-radius: 6px;
+    opacity: 0.8;
+}
+
+.resultado__busca {
+   margin: 30px auto;
+}
+
+a {
+    color: inherit;
+    text-decoration: none;
+}
+
+.item__lista--busca {
+    margin: 15px auto ;
+    width: 80%;    
+    border-radius: 6px;
+    padding: 15px;
+    font-size: 1.3rem;
+    font-weight: 600;
+    transition: 400ms;
+    text-align: center;
+}
+
+.item__lista--busca:hover {
+   border: none;
+   font-size: 1.5rem;
+   transition: 400ms;
+   text-align: center;
+   text-decoration: underline;
+}
+
+
+
+footer div {
+    text-align: center;
+} 
