@@ -40,7 +40,7 @@ form {
     width: 600px;
     display: grid;
     grid-template-columns: auto auto;
-    grid-template-rows: repeat(8fr);
+    grid-template-rows: auto;
     gap: 20px;
 }
 
@@ -68,6 +68,23 @@ input, textarea ,select{
     text-align: center;
     padding: 10px;
 }
+
+.anamnese__formulario {
+    display: grid;
+    grid-template-columns: auto auto;
+    grid-row: auto;
+}
+
+.anamnese__nome-paciente {
+    grid-column: span 2;
+    margin: 20px auto 20px auto;
+}
+
+.anamnse__div { 
+    background-color: #ff0000;
+}
+
+
 
 .div-botoes{
     margin: 20px;
