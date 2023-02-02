@@ -5,18 +5,16 @@
 <main>
     <form action="{% url 'criar_usuario' %}" method="POST">
         {% csrf_token %}
-        
-        {% for campo in formulario %}
-       
-            <label for="{{ campo.id_for_label }}">{{ campo.label }}</label>
-            {{ campo }}
-
-
-
-        {% endfor %}
-        <input type="reset" value="Limpar" class="botao-limpar">
-        <input type="submit" value="Criar" class="botao-salvar">
-
+        <div class="campos__formulario">
+            {% for campo in formulario %}       
+                <label for="{{ campo.id_for_label }}">{{ campo.label }}</label>
+                {{ campo }}
+            {% endfor %}
+        </div>
+        <div class="div-botoes">
+            <input type="reset" value="Limpar" class="botao-limpar">
+            <input type="submit" value="Criar" class="botao-salvar">
+        </div>
         {% include 'partials/_alertas.html' %}
     </form>
 </main>

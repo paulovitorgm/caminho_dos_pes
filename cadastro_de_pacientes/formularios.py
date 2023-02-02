@@ -4,7 +4,7 @@ from . models import anamnese
 
 class Cadastro_de_paciente(forms.ModelForm):
     nome_paciente = forms.CharField(label='Nome do paciente', max_length=200, widget=forms.TextInput(attrs={'placeholder':'Ex: Paulo'}))
-    sobrenome_paciente = forms.CharField(label='Nome do paciente', max_length=200, widget=forms.TextInput(attrs={'placeholder':'Ex: da Silva'}))
+    sobrenome_paciente = forms.CharField(label='Sobrenome do paciente', max_length=200, widget=forms.TextInput(attrs={'placeholder':'Ex: da Silva'}))
     telefone = forms.CharField(label='Telefone', max_length=11, widget=forms.TextInput(attrs={'placeholder':'(XX) XXXXX-XXXX'}))
     primeiro_atendimento = forms.DateField(label='Data do primeiro atendimento', required=False, widget=forms.DateInput(attrs={'type':'date'}),)
     email = forms.EmailField(label='Email', max_length=150, required=False ,widget=forms.EmailInput(attrs={'placeholder':'email@email.com'}))

@@ -9,16 +9,18 @@
     text-align: center;
 } 
 
+.barra__cabecalho {
+    background-color: #248eff;
+    border-radius: 10px;
+}
+
 .cabecalho-lista {
+    height: 60px;
     display: flex;
     justify-content: space-around;
     align-items: center;
     text-align: center;
-    background-color: #248eff;
-    border-radius: 10px;
-    box-sizing: border-box;
-    flex-flow: nowrap;
-    height: 60px;
+    padding: 0 10px;
 }
 
 .cabecalho-item {
@@ -28,6 +30,52 @@
     justify-self: center;
     align-self: center;
 }
+.cabecalho-item:hover{
+
+    text-decoration: underline;
+}
+
+/* Barra Lateral */
+
+.barra__lateral-nav{
+    
+    
+}
+.barra__lateral-ul{
+    width: 200px;
+    border: none;
+    display: flex;
+    flex-direction: column;
+    background-color: #248eff;
+    border-radius: 10px;
+    padding: 16px;
+}
+.barra__lateral-li{
+    padding: 10px;
+    margin: auto;
+}
+
+.horario__funcionamento{
+    border: solid 1px #000000;
+    background-color: #FFFFFF;
+    margin: auto;
+}
+
+.horario__funcionamento--titulo{
+    font-weight: 600;
+    padding: 8px;
+    text-align: center;
+    
+}
+.horario__funcionamento--linhas{
+    border-bottom: solid 1px #000000;
+}
+
+.horario__funcionamento--celulas{
+    font-weight: 550;
+    padding: 8px;
+
+}
 
 /* Corpo*/
 
@@ -36,27 +84,62 @@ main{
 }
 
 .sessao__indice {
-    width: 800px;
+    width: 1040px;
     margin: auto;
+    padding: 16px;
     display: grid;
     grid-template-columns: 1fr 1fr ;
     grid-template-rows: auto;
-    gap: 16px;
+    gap: 26px;
 }
+
 
 .titulo__index {
     grid-column: span 2;
+    justify-self: center;
+    font-size: 1.6rem;
+    font-weight: 700;
+}
+
+.subtitulo__index{
     font-size: 1.5rem;
-    font-weight: 500;
+    font-weight: 600;
+    padding: 50px 0 50px 0;
+    text-align: center;
+}
+
+.sessao__indice li {
+    align-self: center;
+    font-size: 1.4rem;
+    font-weight: 550;
+    padding: 16px 0 ;
 }
 
 .imagem__destaque {
-    width: 360px;
+    width:80%;
+    box-shadow:  10px 12px  #000000, -10px -10px 12px #1f0404;
 }
+
+.video {
+    grid-column:span 2;
+    margin: auto;
+    padding: 26px;
+    
+}
+.mapa{
+    grid-column:span 2;
+    margin: auto;
+    
+}
+
+
+
+
+
 
 form {
     margin: auto;
-    width: 600px;
+    width: 1040px;
     display: grid;
     grid-template-columns: auto auto;
     grid-template-rows: auto;
@@ -86,7 +169,25 @@ input, textarea ,select{
     width: 90%;
     text-align: center;
     padding: 10px;
+    justify-self: end;
 }
+
+select {
+    cursor: pointer;
+}
+
+
+.campos__formulario {
+    grid-column: span 2;
+    display: grid;
+    grid-template-columns: auto auto;
+    border: solid #000000 3px;
+    border-radius: 6px;
+    padding: 40px 20px;
+    row-gap: 16px;
+}
+
+
 
 
 
@@ -116,16 +217,23 @@ input, textarea ,select{
     border: none;
     padding: 10px 20px;
     margin: 10px;
+    cursor: pointer;
 }
 
 .botao-limpar{
     color: #FFFFFF;
     font-weight: 700;
-    border-radius: 5px;
+    border-radius: 6px;
     background-color: #ff0000;
     border: none;
     padding: 10px 20px;
     margin: 10px;
+    cursor: pointer;
+}
+
+.botao-salvar:hover,.botao-limpar:hover{
+    font-size: 1.5rem ;
+    text-decoration: underline;
 }
 
 

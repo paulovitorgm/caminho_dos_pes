@@ -11,12 +11,12 @@
         
         {% include 'partials/_alertas.html' %}
 
+        <div class="campos__formulario">
         {% for campo in cadastro_de_pacientes %}
-                
-                    <label for="{{ campo.id_for_label}}">{{ campo.label }}</label>
-                    {{ campo }}
-         
-        {% endfor %}
+            <label for="{{ campo.id_for_label}}">{{ campo.label }}</label>
+            {{ campo }}
+            {% endfor %}
+        </div>
         <div class="div-botoes">
             <input type="reset" value="Limpar" class="botao-limpar">
             <input type="submit" value="Salvar" class="botao-salvar">

@@ -4,28 +4,23 @@
     <div class="cabecalho-logo">
        <a href="{% url 'index' %}"><img src="{% static 'img/logo-sem-fundo.png' %}" alt="Logo" ></a>
     </div>
-        <ul class="cabecalho-lista">
-
-            {% if user.is_authenticated %}
-
-                <li class="cabecalho-item"><a href="{% url 'index' %}">Home</a></li>
-                <li class="cabecalho-item"><a href="{% url 'cadastro' %}">Cadastrar paciente</a></li>
-                <li class="cabecalho-item"><a href="{% url 'busca' %}">Anamnese</a></li>
-                <li class="cabecalho-item"><a href="{% url 'registrar_procedimento' %}">Registrar venda</a></li>
-                <li class="cabecalho-item"><a href="{% url 'registrar_despesa' %}">Registrar despesa</a></li>
-                <li class="cabecalho-item"><a href="">Finanças</a></li>
-                <li class="cabecalho-item"><a href="{% url 'logout' %}">Logout</a></li>                   
-            
-            {% else %}
-            
-                <li class="cabecalho-item"><a href="{% url 'index' %}">Home</a></li>
-                <li class="cabecalho-item"><a href="">Agenda</a></li>
-                <li class="cabecalho-item"><a href="{% url 'login' %}">Login</a></li>
-                <li class="cabecalho-item"><a href="{% url 'criar_usuario' %}">Criar conta</a></li>                   
-            
-            {% endif %}
-        
-        </ul>
-
+        <nav class="barra__cabecalho">
+            <ul class="cabecalho-lista">
+                {% if user.is_authenticated %}
+                    <li class="cabecalho-item"><a href="{% url 'index' %}">Home</a></li>
+                    <li class="cabecalho-item"><a href="{% url 'cadastro' %}">Cadastrar paciente</a></li>
+                    <li class="cabecalho-item"><a href="{% url 'busca' %}">Anamnese</a></li>
+                    <li class="cabecalho-item"><a href="{% url 'registrar_procedimento' %}">Registrar venda</a></li>
+                    <li class="cabecalho-item"><a href="{% url 'registrar_despesa' %}">Registrar despesa</a></li>
+                    <li class="cabecalho-item"><a href="">Finanças</a></li>
+                    <li class="cabecalho-item"><a href="{% url 'logout' %}">Logout</a></li>                   
+                {% else %}
+                    <li class="cabecalho-item"><a href="{% url 'index' %}">Home</a></li>
+                    <li class="cabecalho-item"><a href="">Agenda</a></li>
+                    <li class="cabecalho-item"><a href="{% url 'login' %}">Login</a></li>
+                    <li class="cabecalho-item"><a href="{% url 'criar_usuario' %}">Criar conta</a></li>                   
+                {% endif %}    
+            </ul>
+        </nav>
 
 </header>
