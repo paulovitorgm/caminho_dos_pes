@@ -1,0 +1,69 @@
+{% extends 'partials/_base.html' %}
+{% load static %}
+
+{% block content %}
+{% include 'partials/_cabecalho.html' %}
+
+
+<main>
+    <table class="tabela__entradas">
+
+        <thead class="tabela__entradas--head">
+            <tr>
+                <th class="tabela__entradas--head-celula">Data</th>
+                <th class="tabela__entradas--head-celula">Paciente</th>
+                <th class="tabela__entradas--head-celula">Serviço</th>
+                <th class="tabela__entradas--head-celula">Produtos</th>
+                <th class="tabela__entradas--head-celula">Total</th>
+                <th class="tabela__entradas--head-celula">Pagamento</th>
+            </tr>
+        </thead>
+
+    <tbody class="tabela__entradas--body">
+        {% for entrada in entradas %}
+        <tr>
+            <td class="tabela__entradas--body-celula">{{ entrada.data }}</td>
+            <td class="tabela__entradas--body-celula">{{ entrada.paciente }}</td>
+            <td class="tabela__entradas--body-celula">{{ entrada.servico }}</td>
+            <td class="tabela__entradas--body-celula">{{ entrada.produtos }}</td>
+            <td class="tabela__entradas--body-celula">{{ entrada.total }}</td>
+            <td class="tabela__entradas--body-celula">{{ entrada.pagamento }}</td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+ 
+
+<table class="tabela__despesas">
+    <thead class="tabela__despesas--head">
+        <tr>
+            <th class="tabela__despesas--head-celula">Fornecedor</th>
+            <th class="tabela__despesas--head-celula">Data</th>
+            <th class="tabela__despesas--head-celula">Produtos</th>
+            <th class="tabela__despesas--head-celula">Total</th>
+            <th class="tabela__despesas--head-celula">Pagamento</th>
+            <th class="tabela__despesas--head-celula">Observações</th>
+        </tr>
+    </thead>
+    <tbody class="tabela__despesas--body">
+        {% for saida in saidas %}    
+        <tr>
+            <td class="tabela__despesas--body-celula">{{ saida.fornecedor }}</td>
+            <td class="tabela__despesas--body-celula">{{ saida.data }}</td>
+            <td class="tabela__despesas--body-celula">{{ saida.produtos }}</td>
+            <td class="tabela__despesas--body-celula">{{ saida.total }}</td>
+            <td class="tabela__despesas--body-celula">{{ saida.pagamento }}</td>
+            <td class="tabela__despesas--body-celula">{{ saida.observacoes }}</td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+
+
+
+</main>
+
+
+{% include 'partials/_footer.html' %}
+
+{% endblock %}

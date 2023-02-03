@@ -60,7 +60,6 @@ def cadastro_de_pacientes(request):
       return redirect('login')
 
 
-
 def busca(request):
    if request.user.is_authenticated:
       lista_de_pacientes = Cadastro.objects.order_by('nome_paciente')
@@ -108,6 +107,7 @@ def salvar_anamnese(request, anamnese_id):
    else:
       return redirect('login')
 
+
 def anamnese(request, paciente_id):
    anamnese = get_object_or_404(Cadastrar_anamnese, paciente_id = paciente_id)
    paciente = anamnese.paciente
@@ -116,9 +116,6 @@ def anamnese(request, paciente_id):
       'paciente' : paciente,
    }
    return render(request, 'anamnese.html', contexto)
-
-
-
 
 
 def campo_vazio(campo):

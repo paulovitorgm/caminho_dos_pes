@@ -35,106 +35,12 @@
     text-decoration: underline;
 }
 
-/* Barra Lateral */
-
-.barra__lateral-nav{
-    
-    
-}
-.barra__lateral-ul{
-    width: 200px;
-    border: none;
-    display: flex;
-    flex-direction: column;
-    background-color: #248eff;
-    border-radius: 10px;
-    padding: 16px;
-}
-.barra__lateral-li{
-    padding: 10px;
-    margin: auto;
-}
-
-.horario__funcionamento{
-    border: solid 1px #000000;
-    background-color: #FFFFFF;
-    margin: auto;
-}
-
-.horario__funcionamento--titulo{
-    font-weight: 600;
-    padding: 8px;
-    text-align: center;
-    
-}
-.horario__funcionamento--linhas{
-    border-bottom: solid 1px #000000;
-}
-
-.horario__funcionamento--celulas{
-    font-weight: 550;
-    padding: 8px;
-
-}
 
 /* Corpo*/
 
 main{
     background-color: #FFFFFF;
 }
-
-.sessao__indice {
-    width: 1040px;
-    margin: auto;
-    padding: 16px;
-    display: grid;
-    grid-template-columns: 1fr 1fr ;
-    grid-template-rows: auto;
-    gap: 26px;
-}
-
-
-.titulo__index {
-    grid-column: span 2;
-    justify-self: center;
-    font-size: 1.6rem;
-    font-weight: 700;
-}
-
-.subtitulo__index{
-    font-size: 1.5rem;
-    font-weight: 600;
-    padding: 50px 0 50px 0;
-    text-align: center;
-}
-
-.sessao__indice li {
-    align-self: center;
-    font-size: 1.4rem;
-    font-weight: 550;
-    padding: 16px 0 ;
-}
-
-.imagem__destaque {
-    width:80%;
-    box-shadow:  10px 12px  #000000, -10px -10px 12px #1f0404;
-}
-
-.video {
-    grid-column:span 2;
-    margin: auto;
-    padding: 26px;
-    
-}
-.mapa{
-    grid-column:span 2;
-    margin: auto;
-    
-}
-
-
-
-
 
 
 form {
@@ -176,7 +82,6 @@ select {
     cursor: pointer;
 }
 
-
 .campos__formulario {
     grid-column: span 2;
     display: grid;
@@ -187,10 +92,6 @@ select {
     row-gap: 16px;
 }
 
-
-
-
-
 .anamnse__div { 
     display: grid;
     grid-template-columns: auto auto;
@@ -199,8 +100,6 @@ select {
 .anamnese__nome-paciente {
     grid-column: span 2;
 }
-
-
 
 .div-botoes{
     margin: 20px;
@@ -236,7 +135,6 @@ select {
     text-decoration: underline;
 }
 
-
 .alerta__success{
     margin: auto;
     width: 80%;
@@ -268,8 +166,6 @@ select {
    margin: 30px auto;
 }
 
-
-
 .item__lista--busca {
     margin: 15px auto ;
     width: 80%;    
@@ -288,8 +184,6 @@ select {
    text-align: center;
    text-decoration: underline;
 }
-
-
 
 footer div {
     text-align: center;

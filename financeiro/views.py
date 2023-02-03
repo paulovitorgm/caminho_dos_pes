@@ -1,10 +1,10 @@
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, get_list_or_404, get_object_or_404
 from .formularios import Venda
 from django.contrib import messages
 from .models.registrar_venda import Registrar_venda
 from .models.registrar_despesas import Registrar_despesa
 from .formularios import Despesa
-
+from django.db.models import Sum
 
 def registar_procedimento(request):
     if request.user.is_authenticated:
@@ -36,11 +36,6 @@ def registar_procedimento(request):
     else:
         return redirect('login')
 
-
-def registrar_venda(request):
-    pass
-
-
     
 def registrar_despesa(request):
     if request.user.is_authenticated:
@@ -68,9 +63,26 @@ def registrar_despesa(request):
     else:
         return redirect('login')
 
+def financas(request):
+    if request.user.is_authenticated:
+        contexto = {
+            'entradas' : financas__entradas(),
+            'saidas' : financas__despesas(),
+        }
+        return render (request, 'financas.html', contexto)
+    else:
+        return redirect('login')
+
+def financas__entradas():
+    lista_de_vendas = get_list_or_404(Registrar_venda.objects.filter().order_by('data'))
+    
+    
+    return lista_de_vendas
 
 
-
+def financas__despesas():
+    lista_de_despesas = get_list_or_404(Registrar_despesa.objects.filter().order_by('data'))
+    return lista_de_despesas
 
 def campo_vazio(campo):
     return not campo.strip()
