@@ -21,14 +21,20 @@
 
     <tbody class="tabela__entradas--body">
         {% for entrada in entradas %}
-        <tr>
-            <td class="tabela__entradas--body-celula">{{ entrada.data }}</td>
-            <td class="tabela__entradas--body-celula">{{ entrada.paciente }}</td>
-            <td class="tabela__entradas--body-celula">{{ entrada.servico }}</td>
-            <td class="tabela__entradas--body-celula">{{ entrada.produtos }}</td>
-            <td class="tabela__entradas--body-celula">{{ entrada.total }}</td>
-            <td class="tabela__entradas--body-celula">{{ entrada.pagamento }}</td>
-        </tr>
+            <tr class="tabela__entradas--body-linha">
+                <td class="tabela__entradas--body-celula">{{ entrada.data }}</td>
+                <td class="tabela__entradas--body-celula">{{ entrada.paciente }}</td>
+                <td class="tabela__entradas--body-celula">{{ entrada.servico }}</td>
+                <td class="tabela__entradas--body-celula">{{ entrada.produtos }}</td>
+                <td class="tabela__entradas--body-celula">{{ entrada.total }}</td>
+                <td class="tabela__despesas--body-celula">
+                    {% if entrada.pagamento == 'deb' %}Débito
+                    {% elif entrada.pagamento == 'cred' %}Crédito
+                    {% elif entrada.pagamento == 'pix' %}Pix
+                    {% elif entrada.pagamento == 'din' %}Dinheiro
+                    {% endif %}
+                </td>
+            </tr>
         {% endfor %}
     </tbody>
 </table>
@@ -37,8 +43,8 @@
 <table class="tabela__despesas">
     <thead class="tabela__despesas--head">
         <tr>
-            <th class="tabela__despesas--head-celula">Fornecedor</th>
             <th class="tabela__despesas--head-celula">Data</th>
+            <th class="tabela__despesas--head-celula">Fornecedor</th>
             <th class="tabela__despesas--head-celula">Produtos</th>
             <th class="tabela__despesas--head-celula">Total</th>
             <th class="tabela__despesas--head-celula">Pagamento</th>
@@ -47,14 +53,20 @@
     </thead>
     <tbody class="tabela__despesas--body">
         {% for saida in saidas %}    
-        <tr>
-            <td class="tabela__despesas--body-celula">{{ saida.fornecedor }}</td>
-            <td class="tabela__despesas--body-celula">{{ saida.data }}</td>
-            <td class="tabela__despesas--body-celula">{{ saida.produtos }}</td>
-            <td class="tabela__despesas--body-celula">{{ saida.total }}</td>
-            <td class="tabela__despesas--body-celula">{{ saida.pagamento }}</td>
-            <td class="tabela__despesas--body-celula">{{ saida.observacoes }}</td>
-        </tr>
+            <tr class="tabela__despesas--body-linha">
+                <td class="tabela__despesas--body-celula">{{ saida.data }}</td>
+                <td class="tabela__despesas--body-celula">{{ saida.fornecedor }}</td>
+                <td class="tabela__despesas--body-celula">{{ saida.produtos }}</td>
+                <td class="tabela__despesas--body-celula">{{ saida.total }}</td>
+                <td class="tabela__despesas--body-celula">
+                    {% if saida.pagamento == 'deb' %}Débito
+                    {% elif saida.pagamento == 'cred' %}Crédito
+                    {% elif saida.pagamento == 'pix' %}Pix
+                    {% elif saida.pagamento == 'din' %}Dinheiro
+                    {% endif %} 
+                </td>            
+                <td class="tabela__despesas--body-celula celula--observacoes">{{ saida.observacoes }}</td>
+            </tr>
         {% endfor %}
     </tbody>
 </table>

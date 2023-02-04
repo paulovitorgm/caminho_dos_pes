@@ -75,8 +75,6 @@ def financas(request):
 
 def financas__entradas():
     lista_de_vendas = get_list_or_404(Registrar_venda.objects.filter().order_by('data'))
-    
-    
     return lista_de_vendas
 
 
