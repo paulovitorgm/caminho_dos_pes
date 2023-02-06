@@ -214,6 +214,8 @@ select {
     text-align: center;
 }
 
+
+
 .tabela__despesas {
     width: 1040px;
     margin: auto auto 16px auto;
@@ -246,6 +248,8 @@ select {
 .celula--observacoes{
     text-align: justify;
 }
+
+
 
 /* Footer */
 footer div {

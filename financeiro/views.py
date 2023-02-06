@@ -1,10 +1,10 @@
-from django.shortcuts import render, redirect, get_list_or_404, get_object_or_404
-from .formularios import Venda
+from django.shortcuts import render, redirect, get_list_or_404
+from .formularios import Venda, Despesa
 from django.contrib import messages
 from .models.registrar_venda import Registrar_venda
 from .models.registrar_despesas import Registrar_despesa
-from .formularios import Despesa
-from django.db.models import Sum
+
+
 
 def registar_procedimento(request):
     if request.user.is_authenticated:
@@ -35,7 +35,6 @@ def registar_procedimento(request):
             return render(request, 'registrar_procedimentos.html', contexto)
     else:
         return redirect('login')
-
     
 def registrar_despesa(request):
     if request.user.is_authenticated:
@@ -68,6 +67,8 @@ def financas(request):
         contexto = {
             'entradas' : financas__entradas(),
             'saidas' : financas__despesas(),
+            'total_entradas': total_de_vendas(),
+            'total_despesas': total_de_despesas(),
         }
         return render (request, 'financas.html', contexto)
     else:
@@ -77,10 +78,20 @@ def financas__entradas():
     lista_de_vendas = get_list_or_404(Registrar_venda.objects.filter().order_by('data'))
     return lista_de_vendas
 
+def total_de_vendas():
+    lista_entradas = Registrar_venda.objects.filter()
+    total_vendas = sum(coluna.total for coluna in lista_entradas)
+    return total_vendas
+
 
 def financas__despesas():
     lista_de_despesas = get_list_or_404(Registrar_despesa.objects.filter().order_by('data'))
     return lista_de_despesas
+
+def total_de_despesas():
+    lista_despesas = Registrar_despesa.objects.filter()
+    total_despesas = sum(coluna.total for coluna in lista_despesas)
+    return total_despesas
 
 def campo_vazio(campo):
     return not campo.strip()
