@@ -18,7 +18,9 @@
                 <th class="tabela__entradas--head-celula">Pagamento</th>
             </tr>
         </thead>
-
+    
+        
+    
         <tbody class="tabela__entradas--body">
             {% for entrada in entradas %}
                 <tr class="tabela__entradas--body-linha">
@@ -37,6 +39,25 @@
                 </tr>
             {% endfor %}
         </tbody>
+
+        <!-- paginator -->
+        <div class="div__paginator">
+            <span class="span__paginator">
+                {% if entradas.has_previous %}
+                    <a href="?page=1" class="a__paginator">&laquo;Primeira</a>
+                    <a href="?page={{ entradas.previous_page_number }}" class="a__paginator">Anteror</a>
+                {% endif %}
+
+                {{ entradas.number}} de {{ entradas.paginator.num_pages }}
+
+                {% if entradas.has_next %}
+                    <a href="?page={{ entradas.next_page_number }}" class="a__paginator"> Próximo</a>
+                    <a href="?page={{ entradas.paginator.num_pages }}" class="a__paginator">Última &raquo;</a>
+                {% endif %}
+            </span>
+        </div>
+        <!-- paginator -->
+
 
         <tfoot>
             <tr>
@@ -78,9 +99,35 @@
                         {% elif saida.pagamento == 'din' %}Dinheiro
                         {% endif %} 
                     </td>            
-                    <td class="tabela__despesas--body-celula celula--observacoes">{{ saida.observacoes }}</td>
+                    {% if saida.observacoes %} 
+                        <td class="tabela__despesas--body-celula celula--observacoes">
+                            {{ saida.observacoes }}
+                    {% else %}
+                        <td class="tabela__despesas--body-celula">
+                            -
+                    {% endif %}
+                        </td>
                 </tr>
             {% endfor %}
+        
+        <!-- paginator -->
+        <div class="div__paginator">
+            <span class="span__paginator">
+                {% if saidas.has_previous %}
+                    <a href="?page=1" class="a__paginator">&laquo;Primeira</a>
+                    <a href="?page={{ saidas.previous_page_number }}" class="a__paginator">Anteror</a>
+                {% endif %}
+
+                {{ saidas.number}} de {{ saidas.paginator.num_pages }}
+
+                {% if saidas.has_next %}
+                    <a href="?page={{ saidas.next_page_number }}" class="a__paginator"> Próximo</a>
+                    <a href="?page={{ saidas.paginator.num_pages }}" class="a__paginator">Última &raquo;</a>
+                {% endif %}
+            </span>
+        </div>
+        <!-- paginator -->
+
         </tbody>
 
         <tfoot>

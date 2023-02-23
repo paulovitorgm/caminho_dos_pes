@@ -1,8 +1,14 @@
+/* Variáveis */
+:root {
+    --azul-principal: #248eff;
+
+}
+
 /* cabeçalho / menu */
 .cabecalho {
     width: auto;
     padding: 30px;
-    background: linear-gradient(#248eff,#FFFFFF);
+    background: linear-gradient(var(--azul-principal),#FFFFFF);
 
 }
 .cabecalho-logo {
@@ -10,7 +16,7 @@
 } 
 
 .barra__cabecalho {
-    background-color: #248eff;
+    background-color: var(--azul-principal);
     border-radius: 10px;
 }
 
@@ -249,7 +255,21 @@ select {
     text-align: justify;
 }
 
+.div__paginator {
+    width: 1040px;
+    text-align: end;
+    padding: 10px;
 
+}
+
+.span__paginator {
+    font-weight: 600;
+    font-size: 16px;
+}
+
+.a__paginator {
+    margin: 0 6px;
+}
 
 /* Footer */
 footer div {

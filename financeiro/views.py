@@ -3,7 +3,7 @@ from .formularios import Venda, Despesa
 from django.contrib import messages
 from .models.registrar_venda import Registrar_venda
 from .models.registrar_despesas import Registrar_despesa
-
+from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 
 
 def registar_procedimento(request):
@@ -64,9 +64,17 @@ def registrar_despesa(request):
 
 def financas(request):
     if request.user.is_authenticated:
+        entradas = financas__entradas()
+        saidas = financas__despesas()
+        paginator_entradas = Paginator(entradas, 1)
+        page = request.GET.get('page')
+        linhas_por_pagina_entradas = paginator_entradas.get_page(page)
+        paginator_saidas = Paginator(saidas, 2)
+        linhas_por_pagina_saidas = paginator_saidas.get_page(page)
+
         contexto = {
-            'entradas' : financas__entradas(),
-            'saidas' : financas__despesas(),
+            'entradas' : linhas_por_pagina_entradas,    
+            'saidas' : linhas_por_pagina_saidas,
             'total_entradas': total_de_vendas(),
             'total_despesas': total_de_despesas(),
         }
