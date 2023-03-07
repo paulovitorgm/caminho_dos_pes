@@ -20,8 +20,13 @@ def fazer_login(request):
       if campo_vazio(usuario) or campo_vazio(senha):
          messages.error(request, 'Os campos email e senha não podem ficar em branco.')
          return redirect('login')
+      
       user = authenticate(request, username = usuario, password = senha)
       
+      if user is None:
+         messages.error(request, "Usuário ou senha inválidos.")
+         return redirect('login')
+
       if user is not None:
          login(request, user)
          return redirect ('index')

@@ -7,7 +7,7 @@
         <nav class="barra__cabecalho">
             <ul class="cabecalho-lista">
                 {% if user.is_authenticated %}
-                    <li class="cabecalho-item"><a href="{% url 'index' %}">Home</a></li>
+                    <li class="cabecalho-item"><a href="{% url 'index' %}">Início</a></li>
                     <li class="cabecalho-item"><a href="{% url 'cadastro' %}">Cadastrar paciente</a></li>
                     <li class="cabecalho-item"><a href="{% url 'busca' %}">Anamnese</a></li>
                     <li class="cabecalho-item"><a href="{% url 'registrar_procedimento' %}">Registrar venda</a></li>
@@ -16,8 +16,7 @@
                     <li class="cabecalho-item"><a href="{% url 'saidas' %}">Saídas</a></li>
                     <li class="cabecalho-item"><a href="{% url 'logout' %}">Logout</a></li>                   
                 {% else %}
-                    <li class="cabecalho-item"><a href="{% url 'index' %}">Home</a></li>
-                    <li class="cabecalho-item"><a href="">Agenda</a></li>
+                    <li class="cabecalho-item"><a href="{% url 'index' %}">Início</a></li>
                     <li class="cabecalho-item"><a href="{% url 'login' %}">Login</a></li>
                     <li class="cabecalho-item"><a href="{% url 'criar_usuario' %}">Criar conta</a></li>                   
                 {% endif %}    

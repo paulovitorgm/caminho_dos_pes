@@ -197,6 +197,7 @@ select {
     width: 1040px;
     margin: auto auto 16px auto;
     border: solid 2px #248eff;
+    table-layout: fixed;
 }
 
 .tabela__entradas--head {
@@ -210,8 +211,14 @@ select {
     font-weight: 600;
     text-align: center;
 }
+.tabela__entradas--body {
+    text-align: center;
+}
+
 .tabela__entradas--body-linha {
     border-bottom: solid 1px #000000;
+    text-align: center;
+    padding: 6px 8px;
 }
 
 .tabela__entradas--body-celula {
@@ -223,27 +230,37 @@ select {
 .tabela__entradas--footer {
     background-color: #95fdb4;
 }
-
+.tabela__entradas--footer-celula {
+    font-size: 0.9rem;
+    font-weight: 700;
+    padding: 8px;
+    text-align: center;
+}
 
 .tabela__despesas {
     width: 1040px;
     margin: auto auto 16px auto;
     border: solid 2px #FF0000;
+    table-layout: fixed;
 }
 
 .tabela__despesas--head {
     border-bottom: solid 1px #FF0000;
     
 }
+
 .tabela__despesas__head_celula{
     padding: 8px;
     font-size: 1.1rem;
     font-weight: 600;
     text-align: center;
+    padding: 6px 8px;
 }
 
 .tabela__despesas--body-linha{
     border-bottom: solid 1px #000000;
+    text-align: center;
+    padding: 6px 8px;
 }
 
 .tabela__despesas--body-celula{
@@ -256,6 +273,7 @@ select {
 
 .celula--observacoes{
     text-align: justify;
+    padding: 6px 8px;
 }
 
 .div__paginator {
