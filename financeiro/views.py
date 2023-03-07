@@ -3,7 +3,7 @@ from .formularios import Venda, Despesa
 from django.contrib import messages
 from .models.registrar_venda import Registrar_venda
 from .models.registrar_despesas import Registrar_despesa
-from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
+from django.core.paginator import Paginator
 
 
 def registar_procedimento(request):
@@ -62,26 +62,6 @@ def registrar_despesa(request):
     else:
         return redirect('login')
 
-def financas(request):
-    if request.user.is_authenticated:
-        entradas = financas__entradas()
-        saidas = financas__despesas()
-        paginator_entradas = Paginator(entradas, 1)
-        page = request.GET.get('page')
-        linhas_por_pagina_entradas = paginator_entradas.get_page(page)
-        paginator_saidas = Paginator(saidas, 2)
-        linhas_por_pagina_saidas = paginator_saidas.get_page(page)
-
-        contexto = {
-            'entradas' : linhas_por_pagina_entradas,    
-            'saidas' : linhas_por_pagina_saidas,
-            'total_entradas': total_de_vendas(),
-            'total_despesas': total_de_despesas(),
-        }
-        return render (request, 'financas.html', contexto)
-    else:
-        return redirect('login')
-
 def financas__entradas():
     lista_de_vendas = get_list_or_404(Registrar_venda.objects.filter().order_by('data'))
     return lista_de_vendas
@@ -91,6 +71,20 @@ def total_de_vendas():
     total_vendas = sum(coluna.total for coluna in lista_entradas)
     return total_vendas
 
+def entradas(request):
+    if request.user.is_authenticated:
+        entradas = financas__entradas()
+        paginator_entradas = Paginator(entradas, 1)
+        page = request.GET.get('page')
+        linhas_por_pagina_entradas = paginator_entradas.get_page(page)
+
+        contexto = {
+            'entradas' : linhas_por_pagina_entradas,    
+            'total_entradas': total_de_vendas(),
+            }
+        return render (request, 'entradas.html', contexto)
+    else:
+        return redirect('login')
 
 def financas__despesas():
     lista_de_despesas = get_list_or_404(Registrar_despesa.objects.filter().order_by('data'))
@@ -103,3 +97,17 @@ def total_de_despesas():
 
 def campo_vazio(campo):
     return not campo.strip()
+
+def saidas(request):
+    if request.user.is_authenticated:
+        saidas = financas__despesas()
+        page = request.GET.get('page')
+        paginator_saidas = Paginator(saidas, 2)
+        linhas_por_pagina_saidas = paginator_saidas.get_page(page)
+        contexto = {
+            'saidas' : linhas_por_pagina_saidas,
+            'total_despesas': total_de_despesas()
+            }
+        return render (request, 'saidas.html', contexto)
+    else:
+        return redirect('login')

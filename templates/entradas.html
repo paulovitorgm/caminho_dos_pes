@@ -1,0 +1,80 @@
+{% extends 'partials/_base.html' %}
+{% load static %}
+
+{% block content %}
+{% include 'partials/_cabecalho.html' %}
+
+
+<main>
+    <table class="tabela__entradas">
+        
+        <!-- paginator -->
+       <div class="div__paginator">
+           <span class="span__paginator">
+               {% if entradas.has_previous %}
+                   <a href="?page=1" class="a__paginator">&laquo;Primeira</a>
+                   <a href="?page={{ entradas.previous_page_number }}" class="a__paginator">Anteror</a>
+               {% endif %}
+
+               {{ entradas.number}} de {{ entradas.paginator.num_pages }}
+
+               {% if entradas.has_next %}
+                   <a href="?page={{ entradas.next_page_number }}" class="a__paginator"> Próximo</a>
+                   <a href="?page={{ entradas.paginator.num_pages }}" class="a__paginator">Última &raquo;</a>
+               {% endif %}
+           </span>
+       </div>
+       <!-- paginator -->
+       <thead class="tabela__entradas--head">
+           <tr>
+               <th class="tabela__entradas--head-celula ">Data</th>
+               <th class="tabela__entradas--head-celula ">Paciente</th>
+               <th class="tabela__entradas--head-celula ">Serviço</th>
+               <th class="tabela__entradas--head-celula ">Produtos</th>
+               <th class="tabela__entradas--head-celula ">Total</th>
+               <th class="tabela__entradas--head-celula ">Pagamento</th>
+           </tr>
+       </thead>
+   
+       <tbody class="tabela__entradas--body">
+           {% for entrada in entradas %}
+               <tr class="tabela__entradas--body-linha">
+                   <td class="tabela__entradas--body-celula">{{ entrada.data }}</td>
+                   <td class="tabela__entradas--body-celula">{{ entrada.paciente }}</td>
+                   <td class="tabela__entradas--body-celula">{{ entrada.servico }}</td>
+                   <td class="tabela__entradas--body-celula">{{ entrada.produtos }}</td>
+                   <td class="tabela__entradas--body-celula">R${{ entrada.total }}</td>
+                   <td class="tabela__entradas--body-celula">
+                       {% if entrada.pagamento == 'deb' %}Débito
+                       {% elif entrada.pagamento == 'cred' %}Crédito
+                       {% elif entrada.pagamento == 'pix' %}Pix
+                       {% elif entrada.pagamento == 'din' %}Dinheiro
+                       {% endif %}
+                   </td>
+               </tr>
+           {% endfor %}
+       </tbody>        
+
+       <tfoot >
+           <tr class="tabela__entradas--footer">
+               <td class="tabela__entradas--body-celula"></td>
+               <td class="tabela__entradas--body-celula"></td>
+               <td class="tabela__entradas--body-celula"></td>
+               <td class="tabela__entradas--body-celula">Total parcial </td>
+               <td class="tabela__entradas--body-celula">R${{total_entradas}}</td>
+               <td class="tabela__entradas--body-celula"></td>
+           </tr>
+       </tfoot>
+
+   </table>
+
+</main>
+
+
+
+
+
+
+{% include 'partials/_footer.html' %}
+
+{% endblock %}

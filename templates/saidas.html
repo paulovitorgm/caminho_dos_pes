@@ -1,0 +1,87 @@
+{% extends 'partials/_base.html' %}
+{% load static %}
+
+{% block content %}
+{% include 'partials/_cabecalho.html' %}
+
+
+<main>
+    <table class="tabela__despesas">
+        <thead class="tabela__despesas--head">
+            <tr>
+                <th class="tabela__despesas__head_celula">Data</th>
+                <th class="tabela__despesas__head_celula">Fornecedor</th>
+                <th class="tabela__despesas__head_celula">Produtos</th>
+                <th class="tabela__despesas__head_celula">Total</th>
+                <th class="tabela__despesas__head_celula">Pagamento</th>
+                <th class="tabela__despesas__head_celula">Observações</th>
+            </tr>
+        </thead>
+
+        <tbody class="tabela__despesas--body">
+            {% for saida in saidas %}    
+                <tr class="tabela__despesas--body-linha">
+                    <td class="tabela__despesas__body_celula">{{ saida.data }}</td>
+                    <td class="tabela__despesas__body_celula">{{ saida.fornecedor }}</td>
+                    <td class="tabela__despesas__body_celula">{{ saida.produtos }}</td>
+                    <td class="tabela__despesas__body_celula">R${{ saida.total }}</td>
+                    <td class="tabela__despesas__body_celula">
+                        {% if saida.pagamento == 'deb' %}Débito
+                        {% elif saida.pagamento == 'cred' %}Crédito
+                        {% elif saida.pagamento == 'pix' %}Pix
+                        {% elif saida.pagamento == 'din' %}Dinheiro
+                        {% endif %} 
+                    </td>            
+                    {% if saida.observacoes %} 
+                        <td class="tabela__despesas__body_celula celula--observacoes">
+                            {{ saida.observacoes }}
+                    {% else %}
+                        <td class="tabela__despesas__body_celula">
+                            -
+                    {% endif %}
+                        </td>
+                </tr>
+            {% endfor %}
+        
+            <!-- paginator -->
+            <div class="div__paginator">
+                <span class="span__paginator">
+                    {% if saidas.has_previous %}
+                        <a href="?page=1" class="a__paginator">&laquo;Primeira</a>
+                        <a href="?page={{ saidas.previous_page_number }}" class="a__paginator">Anteror</a>
+                    {% endif %}
+
+                    {{ saidas.number}} de {{ saidas.paginator.num_pages }}
+
+                    {% if saidas.has_next %}
+                        <a href="?page={{ saidas.next_page_number }}" class="a__paginator"> Próximo</a>
+                        <a href="?page={{ saidas.paginator.num_pages }}" class="a__paginator">Última &raquo;</a>
+                    {% endif %}
+                </span>
+            </div>
+            <!-- paginator -->
+
+        </tbody>
+
+        <tfoot>
+            <tr>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td class="tabela__despesas__body_celula">R${{total_despesas}}</td>
+                <td></td>
+                <td></td>
+            </tr>
+        </tfoot>
+    </table>
+
+</main>
+
+
+
+
+
+
+{% include 'partials/_footer.html' %}
+
+{% endblock %}
