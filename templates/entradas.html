@@ -7,7 +7,22 @@
 
 <main>
     <table class="tabela__entradas">
-        
+       
+       
+       
+        <div class="filtro_data">
+            <form action="{% url 'entradas' %}" method="GET">
+                <label for="data_inicial">Data inicio</label>
+                    <input type="date" name="data_inicial" value="{{ request.GET.data_inicial }}">
+                <label for="data_final">Data fim</label>
+                    <input type="date" name="data_final" value=" {{ request.GET.data_final }}">
+                <input type="submit" value="Filtrar" class="botao-salvar">
+            </form>
+        </div>
+
+
+
+
         <!-- paginator -->
        <div class="div__paginator">
            <span class="span__paginator">
@@ -52,6 +67,9 @@
                        {% endif %}
                    </td>
                </tr>
+            
+        
+      
            {% endfor %}
        </tbody>        
 

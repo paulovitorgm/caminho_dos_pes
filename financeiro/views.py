@@ -62,8 +62,13 @@ def registrar_despesa(request):
     else:
         return redirect('login')
 
-def financas__entradas():
+def financas__entradas(request):
     lista_de_vendas = get_list_or_404(Registrar_venda.objects.filter().order_by('data'))
+    if request.method == "GET":
+            data_inicial = request.GET.get('data_inicial')
+            data_final = request.GET.get('data_final')
+            if data_inicial and data_final:
+                lista_de_vendas = get_list_or_404(Registrar_venda.objects.filter(data__range=[data_inicial,data_final]))
     return lista_de_vendas
 
 def total_de_vendas():
@@ -73,11 +78,10 @@ def total_de_vendas():
 
 def entradas(request):
     if request.user.is_authenticated:
-        entradas = financas__entradas()
+        entradas = financas__entradas(request)
         paginator_entradas = Paginator(entradas, 1)
         page = request.GET.get('page')
         linhas_por_pagina_entradas = paginator_entradas.get_page(page)
-
         contexto = {
             'entradas' : linhas_por_pagina_entradas,    
             'total_entradas': total_de_vendas(),
@@ -85,6 +89,7 @@ def entradas(request):
         return render (request, 'entradas.html', contexto)
     else:
         return redirect('login')
+
 
 def financas__despesas():
     lista_de_despesas = get_list_or_404(Registrar_despesa.objects.filter().order_by('data'))
@@ -95,8 +100,6 @@ def total_de_despesas():
     total_despesas = sum(coluna.total for coluna in lista_despesas)
     return total_despesas
 
-def campo_vazio(campo):
-    return not campo.strip()
 
 def saidas(request):
     if request.user.is_authenticated:
@@ -111,3 +114,7 @@ def saidas(request):
         return render (request, 'saidas.html', contexto)
     else:
         return redirect('login')
+    
+def campo_vazio(campo):
+    return not campo.strip()
+

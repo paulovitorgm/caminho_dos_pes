@@ -41,6 +41,20 @@
     text-decoration: underline;
 }
 
+/* index */
+.titulo__localizacao {
+    font-size: 1.4em;
+    font-weight: 700;
+    padding: 8px;
+    margin: 8px;
+}
+
+.mapa {
+    text-align: center;
+}
+iframe {
+    box-shadow: 3px 3px 5px 5px #000000 ;
+}
 
 /* Corpo*/
 
@@ -193,6 +207,15 @@ select {
 
 
 /* Tabelas de finanças */
+.filtro_data {
+    height: 20px;
+    width: 440px;
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-end;
+}
+
+
 .tabela__entradas{
     width: 1040px;
     margin: auto auto 16px auto;
