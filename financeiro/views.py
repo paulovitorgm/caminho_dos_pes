@@ -63,16 +63,14 @@ def registrar_despesa(request):
         return redirect('login')
 
 def financas__entradas(request):
-    lista_de_vendas = get_list_or_404(Registrar_venda.objects.filter().order_by('data'))
     if request.method == "GET":
-            data_inicial = request.GET.get('data_inicial')
-            data_final = request.GET.get('data_final')
-            if data_inicial and data_final:
-                lista_de_vendas = get_list_or_404(Registrar_venda.objects.filter(data__range=[data_inicial,data_final]))
+        lista_de_vendas = filtro_de_data_entradas(request)
+    else:
+        lista_de_vendas = get_list_or_404(Registrar_venda.objects.filter().order_by('data'))
     return lista_de_vendas
 
-def total_de_vendas():
-    lista_entradas = Registrar_venda.objects.filter()
+def total_de_vendas(request):
+    lista_entradas =  filtro_de_data_entradas(request)
     total_vendas = sum(coluna.total for coluna in lista_entradas)
     return total_vendas
 
@@ -84,37 +82,62 @@ def entradas(request):
         linhas_por_pagina_entradas = paginator_entradas.get_page(page)
         contexto = {
             'entradas' : linhas_por_pagina_entradas,    
-            'total_entradas': total_de_vendas(),
+            'total_entradas': total_de_vendas(request),
             }
         return render (request, 'entradas.html', contexto)
     else:
         return redirect('login')
 
+def filtro_de_data_entradas(request):
+    data_inicial = request.GET.get('data_inicial')
+    data_final = request.GET.get('data_final')
+    if data_inicial and data_final:
+        filtro = get_list_or_404(Registrar_venda.objects.filter(data__range=[data_inicial,data_final]))
+        return filtro
+    else:
+        return get_list_or_404(Registrar_venda.objects.all())
 
-def financas__despesas():
-    lista_de_despesas = get_list_or_404(Registrar_despesa.objects.filter().order_by('data'))
+
+def financas__despesas(request):
+    if request.method == "GET":
+        lista_de_despesas = filtro_de_data_saidas(request)
+    else:
+        lista_de_despesas = get_list_or_404(Registrar_despesa.objects.filter().order_by('data'))
     return lista_de_despesas
 
-def total_de_despesas():
-    lista_despesas = Registrar_despesa.objects.filter()
+def total_de_despesas(request):
+    lista_despesas = filtro_de_data_saidas(request)
     total_despesas = sum(coluna.total for coluna in lista_despesas)
     return total_despesas
 
 
 def saidas(request):
     if request.user.is_authenticated:
-        saidas = financas__despesas()
+        saidas = financas__despesas(request)
         page = request.GET.get('page')
         paginator_saidas = Paginator(saidas, 2)
         linhas_por_pagina_saidas = paginator_saidas.get_page(page)
         contexto = {
             'saidas' : linhas_por_pagina_saidas,
-            'total_despesas': total_de_despesas()
+            'total_despesas': total_de_despesas(request)
             }
         return render (request, 'saidas.html', contexto)
     else:
         return redirect('login')
-    
+
+
+
+def filtro_de_data_saidas(request):
+    data_inicial = request.GET.get('data_inicial')
+    data_final = request.GET.get('data_final')
+    if data_inicial and data_final:
+        filtro = filtro = get_list_or_404(Registrar_despesa.objects.filter(data__range=[data_inicial,data_final]))
+        return filtro
+    else:
+        return  get_list_or_404(Registrar_despesa.objects.all())
+
+
+
 def campo_vazio(campo):
     return not campo.strip()
 

@@ -6,37 +6,44 @@
 
 
 <main>
+    <div class="filtro_data">
+        <form action="{% url 'entradas' %}" method="GET" class="filtro__data--formulario">
+            <label for="data_inicial">Data inicio</label>
+                <input type="date" name="data_inicial" value="{{ request.GET.data_inicial }}">
+
+            <label for="data_final">Data fim</label>
+                <input type="date" name="data_final" value="{{ request.GET.data_final }}">
+            <input type="submit" value="Filtrar" class="botao-salvar">
+            
+        </form>
+    </div>
     <table class="tabela__entradas">
-       
-       
-       
-        <div class="filtro_data">
-            <form action="{% url 'entradas' %}" method="GET">
-                <label for="data_inicial">Data inicio</label>
-                    <input type="date" name="data_inicial" value="{{ request.GET.data_inicial }}">
-                <label for="data_final">Data fim</label>
-                    <input type="date" name="data_final" value=" {{ request.GET.data_final }}">
-                <input type="submit" value="Filtrar" class="botao-salvar">
-            </form>
-        </div>
-
-
 
 
         <!-- paginator -->
        <div class="div__paginator">
            <span class="span__paginator">
                {% if entradas.has_previous %}
-                   <a href="?page=1" class="a__paginator">&laquo;Primeira</a>
-                   <a href="?page={{ entradas.previous_page_number }}" class="a__paginator">Anteror</a>
-               {% endif %}
+                    {% if request.GET.data_inicial and request.GET.data_final %}
+                        <a href="?page=1&data_inicial={{request.GET.data_inicial}}&data_final={{request.GET.data_final}}" class="a__paginator">&laquo;Primeira</a>
+                        <a href="?page={{ entradas.previous_page_number }}" class="a__paginator">Anteror</a>    
+                    {% else %}
+                        <a href="?page=1" class="a__paginator">&laquo;Primeira</a>
+                        <a href="?page={{ entradas.previous_page_number }}" class="a__paginator">Anteror</a>
+                    {% endif %}
+                {% endif %}
 
                {{ entradas.number}} de {{ entradas.paginator.num_pages }}
-
+               
                {% if entradas.has_next %}
-                   <a href="?page={{ entradas.next_page_number }}" class="a__paginator"> Próximo</a>
-                   <a href="?page={{ entradas.paginator.num_pages }}" class="a__paginator">Última &raquo;</a>
-               {% endif %}
+                   {% if request.GET.data_inicial and request.GET.data_final %}
+                        <a href="?page={{ entradas.next_page_number }}&data_inicial={{request.GET.data_inicial}}&data_final={{request.GET.data_final}}" class="a__paginator"> Próximo</a>
+                        <a href="?page={{ entradas.paginator.num_pages }}&data_inicial={{request.GET.data_inicial}}&data_final={{request.GET.data_final}}" class="a__paginator">Última &raquo;</a>
+                    {% else %}                    
+                        <a href="?page={{ entradas.next_page_number }}" class="a__paginator"> Próximo</a>
+                        <a href="?page={{ entradas.paginator.num_pages }}" class="a__paginator">Última &raquo;</a>
+                    {% endif %}
+                {% endif %}
            </span>
        </div>
        <!-- paginator -->
@@ -68,8 +75,11 @@
                    </td>
                </tr>
             
-        
-      
+            {% empty %}
+               <tr>
+                    <td>Nenhum dado encontrado</td>
+                </tr>
+               
            {% endfor %}
        </tbody>        
 
