@@ -6,19 +6,33 @@
 
 
 <main>
+    
+    <section class="secao__index">
+        {% for imagem in fotos %}
+            <div class="div__index">
+                <div class="div__index--img">
+                    {% if imagem.foto %}
+                    <img src="{{ imagem.foto.url }}" alt="" class="foto__procedimento">
+                    {% else %}
+                    erro
+                    {% endif %}
 
-    <div>
-        <div>
-            <img src="" alt="">
-        </div>
-        <div>
-            <div>
-        
-                
+                </div>
+                <div class="div__index--inferior">
+                    <div class="div__index--descricao">
+                        <div>
+                            <h1 class="titulo__cartao"> {{ imagem.titulo }} </h1>
+                            <p class="descricao__cartao"> {{ imagem.descricao }} </p>
+                        </div>
+                    </div>
+                </div>
             </div>
-        </div>
-    </div>
-
+        {% endfor %}
+    </section>
+    
+    <form action="?">
+        
+    </form>
 
 
     <div class="mapa">

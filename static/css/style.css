@@ -42,6 +42,55 @@
 }
 
 /* index */
+.secao__index {
+    width: 1040px;
+    margin: auto;
+    padding: 10px;
+}
+
+
+.div__index {
+    width: 300px;
+    height: 400px;
+    position: relative;
+    border-radius: 10px;
+}
+
+
+.div__index--img {
+    width: 300px;
+    height: 200px;
+    position: absolute;
+}
+
+.div__index--inferior {
+    background-color: var(--azul-principal);
+    width: 300px;
+    height: 100px;
+    position: absolute;
+    top: 300px;
+    border-radius: 0 0 15px 15px;
+}
+
+.foto__procedimento {
+    width: 300px;
+    height: 300px;
+    border-radius: 15px 15px 0 0;
+}
+
+.titulo__cartao {
+    font-size: 1em;
+    font-weight: 700;
+    color: #FFFFFF;
+    padding: 8px;
+}
+.descricao__cartao {
+    font-size: 0.8em;
+    padding: 0 8px 0;
+    font-weight: 600;
+}
+
+
 .titulo__localizacao {
     font-size: 1.4em;
     font-weight: 700;

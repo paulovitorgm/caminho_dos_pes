@@ -1,6 +1,5 @@
 from django.contrib import admin
 from cadastro_de_pacientes.models.cadastro_pacientes import Cadastro_de_paciente
-from cadastro_de_pacientes.models.anamnese import Anamnese
 
 
 # Register your models here.

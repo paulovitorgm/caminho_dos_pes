@@ -6,8 +6,6 @@ from django.contrib import messages
 from .formulario import Formulario_usuario
 
 
-def index(request):
-   return render(request, 'index.html')
 
 def fazer_login(request):
    if request.user.is_authenticated:
