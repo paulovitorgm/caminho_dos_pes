@@ -77,7 +77,7 @@ def total_de_vendas(request):
 def entradas(request):
     if request.user.is_authenticated:
         entradas = financas__entradas(request)
-        paginator_entradas = Paginator(entradas, 1)
+        paginator_entradas = Paginator(entradas, 10)
         page = request.GET.get('page')
         linhas_por_pagina_entradas = paginator_entradas.get_page(page)
         contexto = {
@@ -115,7 +115,7 @@ def saidas(request):
     if request.user.is_authenticated:
         saidas = financas__despesas(request)
         page = request.GET.get('page')
-        paginator_saidas = Paginator(saidas, 2)
+        paginator_saidas = Paginator(saidas, 10)
         linhas_por_pagina_saidas = paginator_saidas.get_page(page)
         contexto = {
             'saidas' : linhas_por_pagina_saidas,

@@ -47,7 +47,9 @@
            </span>
        </div>
        <!-- paginator -->
-       <thead class="tabela__entradas--head">
+      
+      
+       <thead class="tabela__entradas__head">
            <tr>
                <th class="tabela__entradas--head-celula ">Data</th>
                <th class="tabela__entradas--head-celula ">Paciente</th>
@@ -58,15 +60,15 @@
            </tr>
        </thead>
    
-       <tbody class="tabela__entradas--body">
+       <tbody class="tabela__entradas__body">
            {% for entrada in entradas %}
-               <tr class="tabela__entradas--body-linha">
-                   <td class="tabela__entradas--body-celula">{{ entrada.data }}</td>
-                   <td class="tabela__entradas--body-celula">{{ entrada.paciente }}</td>
-                   <td class="tabela__entradas--body-celula">{{ entrada.servico }}</td>
-                   <td class="tabela__entradas--body-celula">{{ entrada.produtos }}</td>
-                   <td class="tabela__entradas--body-celula">R${{ entrada.total }}</td>
-                   <td class="tabela__entradas--body-celula">
+               <tr class="tabela__entradas__body_linha">
+                   <td class="tabela__entradas__body_celula">{{ entrada.data }}</td>
+                   <td class="tabela__entradas__body_celula">{{ entrada.paciente }}</td>
+                   <td class="tabela__entradas__body_celula">{{ entrada.servico }}</td>
+                   <td class="tabela__entradas__body_celula">{{ entrada.produtos }}</td>
+                   <td class="tabela__entradas__body_celula">R${{ entrada.total }}</td>
+                   <td class="tabela__entradas__body_celula">
                        {% if entrada.pagamento == 'deb' %}Débito
                        {% elif entrada.pagamento == 'cred' %}Crédito
                        {% elif entrada.pagamento == 'pix' %}Pix

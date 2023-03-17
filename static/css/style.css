@@ -7,7 +7,7 @@
 /* cabeçalho / menu */
 .cabecalho {
     width: auto;
-    padding: 30px;
+    padding: 0 30px;
     background: linear-gradient(var(--azul-principal),#FFFFFF);
 
 }
@@ -18,6 +18,7 @@
 .barra__cabecalho {
     background-color: var(--azul-principal);
     border-radius: 10px;
+    margin-bottom: 50px;
 }
 
 .cabecalho-lista {
@@ -43,9 +44,13 @@
 
 /* index */
 .secao__index {
-    width: 1040px;
-    margin: auto;
-    padding: 10px;
+    width: 1300px;
+    margin: 30px auto;
+    text-align: justify;
+    display: flex;
+    flex-flow: wrap;
+    align-content: start;
+    justify-content: center;
 }
 
 
@@ -54,6 +59,12 @@
     height: 400px;
     position: relative;
     border-radius: 10px;
+    padding: 12px;
+    
+}
+
+.div__index:hover {
+    transform: scale(1.1);
 }
 
 
@@ -79,37 +90,66 @@
 }
 
 .titulo__cartao {
-    font-size: 1em;
+    font-size: 1.2em;
     font-weight: 700;
     color: #FFFFFF;
-    padding: 8px;
+    padding: 12px;
 }
 .descricao__cartao {
-    font-size: 0.8em;
-    padding: 0 8px 0;
+    font-size: 1em;
+    padding: 0 12px 0;
     font-weight: 600;
 }
 
-
-.titulo__localizacao {
-    font-size: 1.4em;
+.titulo__secao {
+    font-size: 2.5em;
     font-weight: 700;
     padding: 8px;
     margin: 8px;
+    text-align: center;
+}
+
+.procedimentos__secao {
+    text-align: center;
+    padding: 50px;
+    background: linear-gradient(#FFFFFF,var(--azul-principal),#FFFFFF);
+}
+
+
+
+.lista__procedimentos {
+    margin: 30px;
+    padding: 30px;
+    list-style-type: square;
+    display: inline-block;
+}
+
+.procedimentos {
+    font-size: 1.5em;
+    font-weight: 600;
+    padding: 8px;
+    text-align: justify;
+}
+.procedimentos:hover {
+    transform: scale(1.2);
+    transition: 400ms;
+}
+
+
+.imagem__procedimentos {
+    display: inline-block;
+    margin: 0 0 0 -200px;
 }
 
 .mapa {
     text-align: center;
+    margin-bottom: 20vh;
 }
 iframe {
     box-shadow: 3px 3px 5px 5px #000000 ;
 }
 
 /* Corpo*/
-
-main{
-    background-color: #FFFFFF;
-}
 
 
 form {
@@ -270,37 +310,34 @@ select {
 
 
 .tabela__entradas{
-    width: 1040px;
-    margin: auto auto 16px auto;
-    border: solid 2px #248eff;
+    width: auto;
+    margin: auto ;
     table-layout: fixed;
 }
 
-.tabela__entradas--head {
-    border-bottom: solid 1px #248eff;
-    
+.tabela__entradas__head {
+    border-bottom: solid 2px #000000;
 }
 
 .tabela__entradas--head-celula {
     padding: 8px;
-    font-size: 1.1rem;
+    font-size: 1.5rem;
+    text-align: center;
     font-weight: 600;
-    text-align: center;
-}
-.tabela__entradas--body {
-    text-align: center;
 }
 
-.tabela__entradas--body-linha {
+.tabela__entradas__body_linha {
     border-bottom: solid 1px #000000;
     text-align: center;
-    padding: 6px 8px;
+    height: 30px;
 }
 
-.tabela__entradas--body-celula {
-    font-size: 0.9rem;
-    padding: 6px 16px;
+.tabela__entradas__body_celula {
+    width: 16%;
+    font-size: 1.2rem;    
     text-align: center;
+    font-weight: 500;
+    vertical-align: middle;
 }
 
 .tabela__entradas--footer {
@@ -314,42 +351,42 @@ select {
 }
 
 .tabela__despesas {
-    width: 1040px;
-    margin: auto auto 16px auto;
-    border: solid 2px #FF0000;
+    width: auto;
+    margin: auto 10%;
     table-layout: fixed;
+    
 }
 
 .tabela__despesas--head {
-    border-bottom: solid 1px #FF0000;
+    border-bottom: solid 2px #000000;
     
 }
 
 .tabela__despesas__head_celula{
     padding: 8px;
-    font-size: 1.1rem;
-    font-weight: 600;
+    font-size: 1.5rem;
     text-align: center;
-    padding: 6px 8px;
+    font-weight: 600;
 }
 
-.tabela__despesas--body-linha{
+.tabela__despesas--body-linha {
     border-bottom: solid 1px #000000;
     text-align: center;
-    padding: 6px 8px;
+    height: 30px;
+    
 }
 
-.tabela__despesas--body-celula{
+.tabela__despesas__body_celula {
     width: 16%;
-    font-size: 0.9rem;
-    padding: 6px 16px;
+    font-size: 1.2rem;    
     text-align: center;
+    font-weight: 500;
     vertical-align: middle;
 }
 
 .celula--observacoes{
     text-align: justify;
-    padding: 6px 8px;
+    padding: 8px;
 }
 
 .div__paginator {
@@ -368,9 +405,20 @@ select {
     margin: 0 6px;
 }
 
+.div__login {
+    height: 40vh;
+}
+
+.login, .criar__usuario{
+    margin: 30px auto;
+}
+
+
 /* Footer */
 footer div {
     text-align: center;
+    background: linear-gradient(#FFFFFF,var(--azul-principal));
+
 } 
 
 

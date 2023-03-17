@@ -7,15 +7,15 @@
 
 <main>
     
-            <div class="filtro_data">
-                <form action="{% url 'saidas' %}" method="GET" class="filtro__data--formulario">
-                    <label for="data_inicial">Data inicio</label>
-                        <input type="date" name="data_inicial" value="{{ request.GET.data_inicial }}">
-                    <label for="data_final">Data fim</label>
-                        <input type="date" name="data_final" value=" {{ request.GET.data_final }}">
-                    <input type="submit" value="Filtrar" class="botao-salvar">
-                </form>
-            </div>
+    <div class="filtro_data">
+        <form action="{% url 'saidas' %}" method="GET" class="filtro__data--formulario">
+            <label for="data_inicial">Data inicio</label>
+                <input type="date" name="data_inicial" value="{{ request.GET.data_inicial }}">
+            <label for="data_final">Data fim</label>
+                <input type="date" name="data_final" value=" {{ request.GET.data_final }}">
+            <input type="submit" value="Filtrar" class="botao-salvar">
+        </form>
+    </div>
     <table class="tabela__despesas">
 
         <thead class="tabela__despesas--head">
