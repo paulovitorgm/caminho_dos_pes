@@ -16,8 +16,6 @@ class Cadastro_de_paciente(forms.ModelForm):
         model = Cadastro
         exclude = ['']
        
-        
-
 
 class Anamnese(forms.ModelForm):
 

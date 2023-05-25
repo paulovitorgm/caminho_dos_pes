@@ -7,9 +7,6 @@ from django.contrib.auth.models import User
 from django.contrib import messages
 
 
-
-
-
 def cadastro_de_pacientes(request):
    if request.user.is_authenticated:
       formulario = Cadastro_de_paciente()
