@@ -4,6 +4,7 @@ from django.shortcuts import render, redirect
 from django.contrib.auth.models import User
 from django.contrib import messages
 from .formulario import Formulario_usuario
+from django.contrib.auth.decorators import login_required
 
 
 
@@ -32,9 +33,11 @@ def fazer_login(request):
    return render(request,'login.html')
 
 
+@login_required(login_url='login')
 def fazer_logout(request):
    logout(request)
    return redirect('index')
+
 
 def criar_usuario(request):
    verifica_se_logado(request)
@@ -49,7 +52,7 @@ def criar_usuario(request):
          return redirect('login')      
       senha = request.POST['senha']
       senha2 = request.POST['senha2']    
-      if  senhas_sao_diferentes(senha, senha2):
+      if senhas_sao_diferentes(senha, senha2):
          messages.error(request, 'As senhas não são iguais.')
          return redirect('criar_usuario')
 
@@ -60,11 +63,6 @@ def criar_usuario(request):
 
       return redirect ('login')
    return render(request,'criar_usuario.html', contexto)
-
-
-
-
-
 
 
 def campo_vazio(campo):

@@ -28,7 +28,6 @@ INSTALLED_APPS = [
     'fotos_index',
     'usuarios',
     'cadastro_de_pacientes',
-
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -76,7 +75,7 @@ DATABASES = {
         'ENGINE': 'django.db.backends.postgresql',
         'NAME': 'caminho_dos_pes',
         'USER': 'postgres',
-        'PASSWORD': 'bancodedados',
+        'PASSWORD': str(os.getenv('PASSWORD')),
         'HOST': 'localhost'
     }
 }

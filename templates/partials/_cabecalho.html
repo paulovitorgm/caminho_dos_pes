@@ -1,26 +1,28 @@
 {% load static %}
-<header class="cabecalho">
 
-    <div class="cabecalho-logo">
-       <a href="{% url 'index' %}"><img src="{% static 'img/logo-sem-fundo.png' %}" alt="Logo" ></a>
-    </div>
-        <nav class="barra__cabecalho">
-            <ul class="cabecalho-lista">
-                {% if user.is_authenticated %}
-                    <li class="cabecalho-item"><a href="{% url 'index' %}">Início</a></li>
-                    <li class="cabecalho-item"><a href="{% url 'cadastro' %}">Cadastrar paciente</a></li>
-                    <li class="cabecalho-item"><a href="{% url 'busca' %}">Anamnese</a></li>
-                    <li class="cabecalho-item"><a href="{% url 'registrar_procedimento' %}">Registrar venda</a></li>
-                    <li class="cabecalho-item"><a href="{% url 'registrar_despesa' %}">Registrar despesa</a></li>
-                    <li class="cabecalho-item"><a href="{% url 'entradas' %}">Entradas</a></li>
-                    <li class="cabecalho-item"><a href="{% url 'saidas' %}">Saídas</a></li>
-                    <li class="cabecalho-item"><a href="{% url 'logout' %}">Logout</a></li>                   
-                {% else %}
-                    <li class="cabecalho-item"><a href="{% url 'index' %}">Início</a></li>
-                    <li class="cabecalho-item"><a href="{% url 'login' %}">Login</a></li>
-                    <li class="cabecalho-item"><a href="{% url 'criar_usuario' %}">Criar conta</a></li>                   
-                {% endif %}    
-            </ul>
-        </nav>
+<header class="">
+    <nav class="cabecalho navbar navbar-expand-lg " data-bs-theme="dark">
+        <div class="cabecalho-logo">
+            <a href="{% url 'index' %}"><img src="{% static 'img/logo-sem-fundo.png' %}" alt="Logo" ></a>
+        </div>
+    {% if not user.is_authenticated %}
+        <div class="container-fluid">
+          <a class="navbar-brand" href="{% url 'index' %}">Início</a>
+          <a class="navbar-brand" href="{% url 'login' %}">Login</a>
+          <a class="navbar-brand" href="{% url 'criar_usuario' %}">Criar conta</a>
+        </div>  
+    {% else %}
+        <div class="container-fluid">
+            <a class="navbar-brand" href="{% url 'index' %}">Início</a>
+            <a class="navbar-brand" href="{% url 'cadastro' %}">Cadastrar paciente</a>
+            <a class="navbar-brand" href="{% url 'busca' %}">Anamnese</a>
+            <a class="navbar-brand" href="{% url 'registrar_procedimento' %}">Registrar venda</a>
+            <a class="navbar-brand" href="{% url 'registrar_despesa' %}">Registrar despesa</a>
+            <a class="navbar-brand" href="{% url 'entradas' %}">Entradas</a>
+            <a class="navbar-brand" href="{% url 'saidas' %}">Saídas</a>
+            <a class="navbar-brand" href="{% url 'logout' %}">Logout</a>
+        </div>
+    {% endif %}
+    
 
 </header>
