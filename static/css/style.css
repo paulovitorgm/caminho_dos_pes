@@ -154,11 +154,7 @@ iframe {
 
 form {
     margin: auto;
-    width: 1040px;
-    display: grid;
-    grid-template-columns: auto auto;
-    grid-template-rows: auto;
-    gap: 20px;
+    width: 740px;
 }
 
 .div-formulario {
@@ -169,10 +165,9 @@ form {
     grid-column: span 2;
 }
 
-label{
+/* label{
     font-size: 22px;
     font-weight: 700;
-    padding: 10px;
     display: block;
 }
 
@@ -184,8 +179,8 @@ input, textarea ,select{
     width: 90%;
     text-align: center;
     padding: 10px;
-    justify-self: end;
-}
+    
+} */
 
 select {
     cursor: pointer;
@@ -193,8 +188,8 @@ select {
 
 .campos__formulario {
     grid-column: span 2;
-    display: grid;
-    grid-template-columns: auto auto;
+    display: flex;
+    flex-direction: column;
     border: solid #000000 3px;
     border-radius: 6px;
     padding: 40px 20px;
@@ -410,7 +405,7 @@ select {
 }
 
 .login, .criar__usuario{
-    margin: 30px auto;
+    margin: auto;
 }
 
 

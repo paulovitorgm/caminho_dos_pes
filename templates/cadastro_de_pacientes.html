@@ -8,15 +8,14 @@
 <main>
     <form action="{% url 'cadastro' %}" method="POST">
         {% csrf_token %}
-        
         {% include 'partials/_alertas.html' %}
-
-        <div class="campos__formulario">
+        
         {% for campo in cadastro_de_pacientes %}
-            <label for="{{ campo.id_for_label}}">{{ campo.label }}</label>
-            {{ campo }}
-            {% endfor %}
-        </div>
+            <div class="form-floating mb-3">
+                {{ campo }}
+                <label for="{{ campo.id_for_label}}">{{ campo.label }}</label>
+            </div>
+        {% endfor %}
         <div class="div-botoes">
             <input type="reset" value="Limpar" class="botao-limpar">
             <input type="submit" value="Salvar" class="botao-salvar">
@@ -26,3 +25,4 @@
 
 {% include 'partials/_footer.html' %}
 {% endblock %}
+

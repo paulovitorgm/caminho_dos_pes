@@ -21,11 +21,18 @@
         {% endif %}
     </section>
 
+    
+
+
+
     <form action="{% url 'busca' %}" method="GET">
         {% csrf_token %}
         <div class="div-formulario">
-            <label for="busca">Encontre um paciente</label>
-            <input type="text" required placeholder="Ex: Paulo Vitor" name="busca" autocomplete="off">           
+            <div class="form-floating mb-3">
+                <input type="text" class="form-control" name="busca" placeholder="Ex: Paulo Vitor" required autocomplete="off">
+                <label for="busca">Encontre um paciente</label>
+            </div>
+            
             <input type="submit" value="Buscar" class="botao-salvar" >
         </div>
     </form>

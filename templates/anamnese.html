@@ -27,6 +27,28 @@
             <input type="text" value="{{ anamnese.especialidade }}" name="especialidade" placeholder="Ex: Ortopedista">
         </div>
         
+        <div class="campos__formulario">
+            <div class="form-floating">
+                <select class="form-select" name="acompanhamento_medico"  value="{{ anamnese.acompanhamento_medico }}">
+                    {% if anamnese.acompanhamento_medico == 'N' %}
+                        <option value="S">Sim</option>
+                        <option value="N" selected>Não</option>
+                    {% else %}
+                        <option value="S" selected>Sim</option>
+                        <option value="N">Não</option>
+                    {% endif %}
+                </select>
+                <label for="acompanhamento_medico"> Faz acompanhamento médico:</label>
+            </div>
+            <div class="form-floating mb-3">
+                <input type="text" class="form-control" name="especialidade" placeholder="Ex: Ortopedista" required autocomplete="off" value="{{ anamnese.especialidade }}">
+                <label for="especialidade"> Especialide:</label>
+            </div>
+        </div>
+
+        
+
+
 
         <div class="campos__formulario">    
             <label for="uso_medicacao"> Faz uso de medicamento:</label>

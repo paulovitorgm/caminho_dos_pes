@@ -5,12 +5,13 @@
 <main>
         <form action="{% url 'criar_usuario' %}" method="POST" class="criar__usuario">
             {% csrf_token %}
-            <div class="campos__formulario">
-                {% for campo in formulario %}       
-                    <label for="{{ campo.id_for_label }}">{{ campo.label }}</label>
+            {% for campo in formulario %}  
+                <div class="form-floating mb-3">
                     {{ campo }}
-                {% endfor %}
-            </div>
+                    <label for="{{ campo.id_for_label }}">{{ campo.label }}</label>
+                </div>
+            {% endfor %}
+
             <div class="div-botoes">
                 <input type="reset" value="Limpar" class="botao-limpar">
                 <input type="submit" value="Criar" class="botao-salvar">

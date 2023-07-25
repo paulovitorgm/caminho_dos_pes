@@ -29,7 +29,6 @@ def fazer_login(request):
       if user is not None:
          login(request, user)
          return redirect ('index')
-
    return render(request,'login.html')
 
 

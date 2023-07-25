@@ -2,9 +2,22 @@
 
 <header class="">
     <nav class="cabecalho navbar navbar-expand-lg " data-bs-theme="dark">
-        <div class="cabecalho-logo">
-            <a href="{% url 'index' %}"><img src="{% static 'img/logo-sem-fundo.png' %}" alt="Logo" ></a>
+        <div class="container">
+            <div id="carouselExampleAutoplaying" class="carousel slide " data-bs-ride="carousel">
+                <div class="carousel-inner">
+                    <div class="carousel-item active">
+                        <a href="{% url 'index' %}"><img src="{% static 'img/logo-sem-fundo.png' %}" alt="Logo" class="d-block" ></a>
+                    </div>
+                    <div class="carousel-item">
+                        <a href="{% url 'index' %}"><img src="{% static 'img/logo-sem-fundo.png' %}" alt="Logo" class="d-block " ></a>
+                    </div>
+                    <div class="carousel-item">
+                        <a href="{% url 'index' %}"><img src="{% static 'img/logo-sem-fundo.png' %}" alt="Logo" class="d-block " ></a>
+                    </div>
+                </div>
+            </div>
         </div>
+
     {% if not user.is_authenticated %}
         <div class="container-fluid">
           <a class="navbar-brand" href="{% url 'index' %}">Início</a>

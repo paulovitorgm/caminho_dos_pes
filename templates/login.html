@@ -5,18 +5,23 @@
 {% include 'partials/_cabecalho.html' %}
 <main>
     <div class="div__login">
-        <form action="{% url 'login' %}" method="POST" class="login">
+        <form action="{% url 'login' %}" method="POST" class="p-3">
             {% csrf_token %}
             {% include 'partials/_alertas.html' %}
-            <div class="campos__formulario">
-                <label for="email" >Email</label>
-                <input type="email"name="email"required>
+                <div class="form-floating mb-3" >
+                    <input type="email" class="form-control" name="email" placeholder="name@example.com" required>
+                    <label for="floatingInput">Email</label>
+                </div>
+
+                <div class="form-floating mb-3">
+                    <input type="password" class="form-control" name="senha" placeholder="Password" required>
+                    <label for="floatingPassword">Senha</label>
+                </div>
                 
-                <label for="senha">Senha</label>
-                <input type="password" name="senha"required>
-            </div>
-            <input type="reset" value="Limpar" class="botao-limpar">
-            <input type="submit" value="Fazer login" class="botao-salvar">
+                <div class="div-botoes" >
+                    <input type="reset" value="Limpar" class="botao-limpar">
+                    <input type="submit" value="Fazer login" class="botao-salvar">
+                </div>
         </form>
     </div>
 </main>
