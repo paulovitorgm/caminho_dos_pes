@@ -1,8 +1,7 @@
 from django.db import models
 
 
-
-class Registrar_despesa(models.Model):
+class RegistrarDespesa(models.Model):
     fornecedor = models.CharField(max_length=100)
     data = models.DateField()
     produtos = models.CharField(max_length=300)

@@ -2,6 +2,7 @@ from django import forms
 from . models.cadastro_pacientes import Cadastro_de_paciente as Cadastro
 from . models import anamnese
 
+
 class Cadastro_de_paciente(forms.ModelForm):
     nome_paciente = forms.CharField(label='Nome do paciente', max_length=200, widget=forms.TextInput(attrs={'placeholder':'Ex: Paulo','autocomplete': 'off', 'class':'form-control' }))
     sobrenome_paciente = forms.CharField(label='Sobrenome do paciente', max_length=200, widget=forms.TextInput(attrs={'placeholder':'Ex: da Silva','autocomplete': 'off', 'class':'form-control' }))

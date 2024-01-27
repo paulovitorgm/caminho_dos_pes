@@ -67,7 +67,7 @@ def busca(request):
             messages.success(request, 'Pacientes encontrados:') 
          else:
             messages.error(request,'Nenhum paciente encontrado, tente novamente.')
-         return render(request, 'busca.html',contexto)
+         return render(request, 'busca.html', contexto)
    else:
          return render(request, 'busca.html')
 

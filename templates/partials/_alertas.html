@@ -1,9 +1,13 @@
 {% if messages %}
-
-
-{% for mensagem in messages %}
-    <div class="alerta__{{ mensagem.tags }}">
-        {{ mensagem }} 
+    {% for mensagem in messages %}
+        <div class="alerta__{{ mensagem.tags }}">
+            {{ mensagem }}
         </div>
-{% endfor %}
+    {% endfor %}
+{% endif %}
+
+{% if form.errors %}
+    {% for error in form.non_field_errors %}
+        <p>{{ error }}</p>
+    {% endfor %}
 {% endif %}

@@ -7,29 +7,154 @@
     <form action="{% url 'salvar_anamnese' anamnese.id %}" method="POST" class="anamnese__formulario">
         {% csrf_token %}   
 
-        <div class="anamnese__nome-paciente">
+        <div class="anamnese__nome-paciente m-3">
             <label for="paciente_id">{{ paciente.nome_paciente }} {{ paciente.sobrenome_paciente }}</label>
             <input type="hidden" name="paciente_id" value="{{ anamnese.paciente_id}}">
         </div>
         
-        <div class="campos__formulario">
-            <label for="acompanhamento_medico"> Faz acompanhamento médico:</label>
-            <select name="acompanhamento_medico" value="{{ anamnese.acompanhamento_medico }}">
-                {% if anamnese.acompanhamento_medico == 'N' %}
-                    <option value="S">Sim</option>
-                    <option value="N" selected>Não</option>
+
+        <div class="p-2">
+            <div class="form-floating">
+                    {% if paciente.sexo == 'F' %}
+                        <label for="gravidez">Está gravida:</label> 
+                        <select class="form-select mb-1" name="gravidez" value="{{ anamnese.gravidez }}">
+                    {% else %}
+                        <select class="form-select mb-1" name="gravidez" value="{{ anamnese.gravidez }}" disabled hidden>
+                    {% endif %}
+
+                    {% if anamnese.gravidez == 'N' %}
+                        <option value="N" selected>Não</option>
+                        <option value="S">Sim</option>
+                    {% else %}
+                        <option value="S" selected>Sim</option>
+                        <option value="N">Não</option>
+                    {% endif %}
+                </select>
+                
+            </div> 
+        </div>
+
+
+        <div class="p-2">
+            <div class="form-floating">
+                {% if paciente.sexo == 'F' %}
+                    <label for="gravidez">Está amamentando:</label> 
+                    <select class="form-select mb-1" name="lactante" value="{{ anamnese.lactante }}">
                 {% else %}
-                    <option value="S" selected>Sim</option>
-                    <option value="N">Não</option>
+                    <select class="form-select mb-1" name="lactante" value="{{ anamnese.lactante }}" disabled hidden>
                 {% endif %}
-            </select>
-            <label for="especialidade"> Especialide:</label>
-            <input type="text" value="{{ anamnese.especialidade }}" name="especialidade" placeholder="Ex: Ortopedista">
+                    {% if anamnese.lactante == 'N' %}
+                        <option value="N" selected>Não</option>
+                        <option value="S">Sim</option>
+                    {% else %}
+                        <option value="S" selected>Sim</option>
+                        <option value="N">Não</option>
+                    {% endif %}
+                </select>
+                
+            </div> 
+        </div>
+
+
+        <div class="p-2">
+            <div class="form-floating">
+                <select class="form-select mb-1" name="hipertensao" value="{{ anamnese.hipertensao }}">
+                    {% if anamnese.hipertensao == 'N' %}
+                        <option value="N" selected>Não</option>
+                        <option value="S">Sim</option>
+                    {% else %}
+                        <option value="S" selected>Sim</option>
+                        <option value="N">Não</option>
+                    {% endif %}
+                </select>
+                <label for="hipertensao">Pressão alta:</label>
+            </div> 
+        </div>
+
+
+        <div class="p-2">
+            <div class="form-floating">
+                <select class="form-select mb-1" name="hipotensao" value="{{ anamnese.hipotensao }}">
+                    {% if anamnese.hipotensao == 'N' %}
+                        <option value="N" selected>Não</option>
+                        <option value="S">Sim</option>
+                    {% else %}
+                        <option value="S" selected>Sim</option>
+                        <option value="N">Não</option>
+                    {% endif %}
+                </select>
+                <label for="hipotensao">Pressão baixa:</label>
+            </div> 
+        </div>
+
+
+        <div class="p-2">
+            <div class="form-floating">
+                <select class="form-select mb-1" name="diabetico" value="{{ anamnese.diabetico }}">
+                    {% if anamnese.diabetico == 'N' %}
+                        <option value="N" selected>Não</option>
+                        <option value="S">Sim</option>
+                    {% else %}
+                        <option value="S" selected>Sim</option>
+                        <option value="N">Não</option>
+                    {% endif %}
+                </select>
+                <label for="diabetico"> Diabético:</label>
+            </div> 
+        </div>
+
+
+        <div class="p-2">
+            <div class="form-floating">
+                <select class="form-select mb-1" name="hepatite" value="{{ anamnese.hepatite }}">
+                    {% if anamnese.hepatite == 'N' %}
+                        <option value="N" selected>Não</option>
+                        <option value="S">Sim</option>
+                    {% else %}
+                        <option value="S" selected>Sim</option>
+                        <option value="N">Não</option>
+                    {% endif %}
+                </select>
+                <label for="diabetico">Hepatite:</label>
+            </div> 
         </div>
         
-        <div class="campos__formulario">
+
+        <div class="p-2">
             <div class="form-floating">
-                <select class="form-select" name="acompanhamento_medico"  value="{{ anamnese.acompanhamento_medico }}">
+                <select class="form-select mb-1" name="hiv" value="{{ anamnese.hiv }}">
+                    {% if anamnese.hiv == 'N' %}
+                        <option value="N" selected>Não</option>
+                        <option value="S">Sim</option>
+                    {% else %}
+                        <option value="S" selected>Sim</option>
+                        <option value="N">Não</option>
+                    {% endif %}
+                </select>
+                <label for="hiv">HIV Positivo:</label>
+            </div> 
+        </div>
+
+
+        <div class="p-2">
+            <div class="form-floating">
+                <select class="form-select mb-1" name="problemas_circulatorios" value="{{ anamnese.problemas_circulatorios }}">
+                    {% if anamnese.problemas_circulatorios == 'N' %}
+                        <option value="N" selected>Não</option>
+                        <option value="S">Sim</option>
+                    {% else %}
+                        <option value="S" selected>Sim</option>
+                        <option value="N">Não</option>
+                    {% endif %}
+                </select>
+                <label for="problemas_circulatorios">Problemas circulatórios:</label>
+            </div> 
+        </div>
+        
+
+        <div class="p-2">
+            <div class="form-floating">
+                <select class="form-select mb-1" name="acompanhamento_medico"  value="{{ anamnese.acompanhamento_medico }}">
                     {% if anamnese.acompanhamento_medico == 'N' %}
                         <option value="S">Sim</option>
                         <option value="N" selected>Não</option>
@@ -40,169 +165,81 @@
                 </select>
                 <label for="acompanhamento_medico"> Faz acompanhamento médico:</label>
             </div>
-            <div class="form-floating mb-3">
-                <input type="text" class="form-control" name="especialidade" placeholder="Ex: Ortopedista" required autocomplete="off" value="{{ anamnese.especialidade }}">
+            <div class="form-floating">
+                <input type="text" class="form-control" name="especialidade" placeholder="Ex: Ortopedista" autocomplete="off" value="{{ anamnese.especialidade }}">
                 <label for="especialidade"> Especialide:</label>
             </div>
         </div>
+     
 
-        
+        <div class="p-2">
+            <div class="form-floating">
+                <select class="form-select mb-1" name="uso_medicacao" value="{{ anamnese.uso_medicacao }}">
+                    {% if anamnese.uso_medicacao == 'N' %}
+                        <option value="N" selected>Não</option>
+                        <option value="S">Sim</option>
+                    {% else %}
+                        <option value="S" selected>Sim</option>
+                        <option value="N">Não</option>
+                    {% endif %}
+                </select>  
+                <div class="form-floating">
+                    <input type="text" class="form-control" type="text" value="{{ anamnese.medicamento_em_uso }}" name="medicamento_em_uso" 
+                            placeholder="Ex: Losartana" autocomplete="off">
+                    <label for="medicamento_em_uso">Nome do medicamento:</label>
+                </div>  
+                <label for="uso_medicacao"> Faz uso de medicação:</label>
+            </div> 
+        </div>   
 
 
-
-        <div class="campos__formulario">    
-            <label for="uso_medicacao"> Faz uso de medicamento:</label>
-            <select name="uso_medicacao" value="{{ anamnese.uso_medicacao }}">
-                {% if anamnese.uso_medicacao == 'N' %}
-                    <option value="S">Sim</option>
-                    <option value="N" selected>Não</option>
-                {% else %}
-                    <option value="S" selected>Sim</option>
-                    <option value="N">Não</option>
-                {% endif %}
-            </select>
-            <label for="especialidade"> Nome do medicamento:</label>
-            <input type="text" value="{{ anamnese.medicamento_em_uso }}" name="medicamento_em_uso" placeholder="Ex: Losartana"> {{ anamnese.medicamento_em_uso }}
+        <div class="p-2">
+            <div class="form-floating">
+                <select class="form-select mb-1" name="alergico" value="{{ anamnese.alergico }}">
+                    {% if anamnese.alergico == 'N' %}
+                        <option value="N" selected>Não</option>
+                        <option value="S">Sim</option>
+                    {% else %}
+                        <option value="S" selected>Sim</option>
+                        <option value="N">Não</option>
+                    {% endif %}
+                </select>
+                <label for="alergico">Possui alergia:</label>
+                <div class="form-floating">
+                    <input type="text" class="form-control" value="{{ anamnese.alergia_a }}" name="alergia_a" 
+                    placeholder="Ex: Camarão" autocomplete="off">
+                    <label for="alergia_a">Alergia a:</label>
+                </div>  
+            </div> 
         </div>
 
-        <div class="campos__formulario">    
-            <label for="diabetico"> Diabético:</label>
-            <select name="diabetico" value="{{ anamnese.diabetico }}">
-                {% if anamnese.diabetico == 'N' %}
-                    <option value="S">Sim</option>
-                    <option value="N" selected>Não</option>
-                {% else %}
-                    <option value="S" selected>Sim</option>
-                    <option value="N">Não</option>
-                {% endif %}
-            </select>
+
+        <div class="p-2">
+            <div class="form-floating">
+                <select class="form-select mb-1" name="teve_cancer" value="{{ anamnese.teve_cancer }}">
+                    {% if anamnese.teve_cancer == 'N' %}
+                        <option value="N" selected>Não</option>
+                        <option value="S">Sim</option>
+                    {% else %}
+                        <option value="S" selected>Sim</option>
+                        <option value="N">Não</option>
+                    {% endif %}
+                </select>
+                <label for="teve_cancer">Já teve câncer:</label>
+                <div class="form-floating">
+                    <input type="text" class="form-control" value="{{ anamnese.tipo_cancer }}" name="tipo_cancer" placeholder="Ex: Pele" autocomplete="off">
+                    <label for="tipo_cancer">Tipo de câncer:</label>
+                </div>  
+            </div> 
+        </div>    
+
+        <div class="p-2">
+            <div class="form-floating">
+                <textarea class="form-control" name="observacoes" value="{{ anamnese.observacoes }}" placeholder="Ex: Paciente chegou com dedo inflamado.">{{ anamnese.observacoes }}</textarea>
+                <label for="observacoes">Observações:</label>
+            </div>
         </div>
 
-        <div class="campos__formulario">
-            <label for="hepatite">Hepatite:</label>
-            <select name="hepatite" value="{{ anamnese.hepatite }}">
-                {% if anamnese.hepatite == 'N' %}
-                    <option value="S">Sim</option>
-                    <option value="N" selected>Não</option>
-                {% else %}
-                    <option value="S" selected>Sim</option>
-                    <option value="N">Não</option>
-                {% endif %}
-            </select>
-        </div>
-
-        <div class="campos__formulario">
-            <label for="hiv">HIV Positivo:</label>
-            <select name="hiv" value="{{ anamnese.hiv }}">
-                {% if anamnese.hiv == 'N' %}
-                    <option value="S">Sim</option>
-                    <option value="N" selected>Não</option>
-                {% else %}
-                    <option value="S" selected>Sim</option>
-                    <option value="N">Não</option>
-                {% endif %}
-            </select>
-        </div>
-        
-        <div class="campos__formulario">    
-            <label for="problemas_circulatorios">Problemas circulatórios:</label>
-            <select name="problemas_circulatorios" value="{{ anamnese.problemas_circulatorios }}">
-                {% if anamnese.problemas_circulatorios == 'N' %}
-                    <option value="S">Sim</option>
-                    <option value="N" selected>Não</option>
-                {% else %}
-                    <option value="S" selected>Sim</option>
-                    <option value="N">Não</option>
-                {% endif %}
-            </select>
-        </div>
-
-        <div class="campos__formulario">
-            <label for="alergico">Possui alergia:</label>
-            <select name="alergico" value="{{ anamnese.alergico }}">
-                {% if anamnese.alergico == 'N' %}
-                    <option value="S">Sim</option>
-                    <option value="N" selected>Não</option>
-                {% else %}
-                    <option value="S" selected>Sim</option>
-                    <option value="N">Não</option>
-                {% endif %}
-            </select>
-            <label for="alergia_a">Alergia a:</label>
-            <input type="text" value="{{ anamnese.alergia_a }}" name="alergia_a" placeholder="Ex: Camarão">
-        </div>
-
-        <div class="campos__formulario">
-            <label for="teve_cancer">Já teve câncer:</label>
-            <select name="teve_cancer" value="{{ anamnese.teve_cancer }}">
-                {% if anamnese.teve_cancer == 'N' %}
-                    <option value="S">Sim</option>
-                    <option value="N" selected>Não</option>
-                {% else %}
-                    <option value="S" selected>Sim</option>
-                    <option value="N">Não</option>
-                {% endif %}
-            </select>
-            <label for="tipo_cancer">Tipo de câncer:</label>
-            <input type="text" value="{{ anamnese.tipo_cancer }}" name="tipo_cancer" placeholder="Ex: Pele">
-        </div>
-
-        <div class="campos__formulario">
-            <label for="gravidez">Está gravida:</label>
-            <select name="gravidez" value="{{ anamnese.gravidez }}">
-                {% if anamnese.gravidez == 'N' %}
-                    <option value="S">Sim</option>
-                    <option value="N" selected>Não</option>
-                {% else %}
-                    <option value="S" selected>Sim</option>
-                    <option value="N">Não</option>
-                {% endif %}
-            </select>
-        </div>
-
-        <div class="campos__formulario">
-            <label for="lactante">Está amamentando:</label>
-            <select name="lactante" value="{{ anamnese.lactante }}">
-                {% if anamnese.lactante == 'N' %}
-                    <option value="S">Sim</option>
-                    <option value="N" selected>Não</option>
-                {% else %}
-                    <option value="S" selected>Sim</option>
-                    <option value="N">Não</option>
-                {% endif %}
-            </select>
-        </div>
-
-        <div class="campos__formulario">
-            <label for="hipertensao">Pressão alta:</label>
-            <select name="hipertensao" value="{{ anamnese.hipertensao }}">
-                {% if anamnese.hipertensao == 'N' %}
-                    <option value="S">Sim</option>
-                    <option value="N" selected>Não</option>
-                {% else %}
-                    <option value="S" selected>Sim</option>
-                    <option value="N">Não</option>
-                {% endif %}
-            </select>
-        </div>
-
-        <div class="campos__formulario">
-            <label for="hipotensao">Pressão baixa:</label>
-            <select name="hipotensao" value="{{ anamnese.hipotensao }}">
-                {% if anamnese.hipotensao == 'N' %}
-                    <option value="S">Sim</option>
-                    <option value="N" selected>Não</option>
-                {% else %}
-                    <option value="S" selected>Sim</option>
-                    <option value="N">Não</option>
-                {% endif %}
-            </select>
-        </div>
-
-        <div class="campos__formulario">
-            <label for="observacoes">Observações:</label>
-            <textarea name="observacoes" value="{{ anamnese.observacoes }}" placeholder="Ex: Paciente chegou com dedo inflamado.">{{ anamnese.observacoes }}</textarea>
-        </div>
 
         <div class="div-botoes">
             <a href="{% url 'busca' %}" ><input type="button" value="Cancelar" class="botao-limpar"></a>

@@ -2,23 +2,24 @@
 {% load static %}
 {% block content %}
 {% include 'partials/_cabecalho.html' %}
-<main>
-        <form action="{% url 'criar_usuario' %}" method="POST" class="criar__usuario">
-            {% csrf_token %}
-            {% for campo in formulario %}  
-                <div class="form-floating mb-3">
-                    {{ campo }}
-                    <label for="{{ campo.id_for_label }}">{{ campo.label }}</label>
-                </div>
-            {% endfor %}
 
-            <div class="div-botoes">
-                <input type="reset" value="Limpar" class="botao-limpar">
-                <input type="submit" value="Criar" class="botao-salvar">
+{% include 'partials/_alertas.html' %}
+    <form action="{% url 'criar_usuario' %}" method="POST" class="criar__usuario">
+        {% csrf_token %}
+        {% for campo in form %}
+            <div class="form-floating mb-3">
+                {{ campo }}
+                <label for="{{ campo.id_for_label }}">{{ campo.label }}</label>
+                {{ campo.errors }}
             </div>
-            {% include 'partials/_alertas.html' %}
-        </form>
-</main>
+        {% endfor %}
+
+        <div class="div-botoes">
+            <input type="reset" value="Limpar" class="botao-limpar">
+            <input type="submit" value="Criar" class="botao-salvar">
+        </div>
+    </form>
+
 
 
 {% include 'partials/_footer.html' %}

@@ -1,8 +1,8 @@
 from django.shortcuts import render, redirect, get_list_or_404
 from .formularios import Venda, Despesa
 from django.contrib import messages
-from .models.registrar_venda import Registrar_venda
-from .models.registrar_despesas import Registrar_despesa
+from .models.registrar_venda import RegistrarVenda
+from .models.registrar_despesas import RegistrarDespesa
 from django.core.paginator import Paginator
 from django.contrib.auth.decorators import login_required
 
@@ -21,7 +21,7 @@ def registar_procedimento(request):
         produtos = request.POST['produtos']
         total = request.POST['total']            
         pagamento = request.POST['pagamento']
-        registro_de_venda = Registrar_venda.objects.create(
+        registro_de_venda = RegistrarVenda.objects.create(
             data = data,
             paciente = paciente,
             servico = servico,
@@ -47,7 +47,7 @@ def registrar_despesa(request):
         total = request.POST['total']
         pagamento = request.POST['pagamento']
         observacoes = request.POST['observacoes']
-        registro_de_despesa = Registrar_despesa.objects.create(
+        registro_de_despesa = RegistrarDespesa.objects.create(
             fornecedor = fornecedor,
             data = data,
             produtos = produtos,
@@ -65,7 +65,7 @@ def financas__entradas(request):
     if request.method == "GET":
         lista_de_vendas = filtro_de_data_entradas(request)
     else:
-        lista_de_vendas = get_list_or_404(Registrar_venda.objects.filter().order_by('data'))
+        lista_de_vendas = get_list_or_404(RegistrarVenda.objects.filter().order_by('data'))
     return lista_de_vendas
 
 
@@ -93,17 +93,17 @@ def filtro_de_data_entradas(request):
     data_inicial = request.GET.get('data_inicial')
     data_final = request.GET.get('data_final')
     if data_inicial and data_final:
-        filtro = get_list_or_404(Registrar_venda.objects.filter(data__range=[data_inicial,data_final]))
+        filtro = get_list_or_404(RegistrarVenda.objects.filter(data__range=[data_inicial,data_final]))
         return filtro
     else:
-        return get_list_or_404(Registrar_venda.objects.all())
+        return get_list_or_404(RegistrarVenda.objects.all())
 
 
 def financas__despesas(request):
     if request.method == "GET":
         lista_de_despesas = filtro_de_data_saidas(request)
     else:
-        lista_de_despesas = get_list_or_404(Registrar_despesa.objects.filter().order_by('data'))
+        lista_de_despesas = get_list_or_404(RegistrarDespesa.objects.filter().order_by('data'))
     return lista_de_despesas
 
 def total_de_despesas(request):
@@ -128,10 +128,10 @@ def filtro_de_data_saidas(request):
     data_inicial = request.GET.get('data_inicial')
     data_final = request.GET.get('data_final')
     if data_inicial and data_final:
-        filtro = filtro = get_list_or_404(Registrar_despesa.objects.filter(data__range=[data_inicial,data_final]))
+        filtro = filtro = get_list_or_404(RegistrarDespesa.objects.filter(data__range=[data_inicial,data_final]))
         return filtro
     else:
-        return  get_list_or_404(Registrar_despesa.objects.all())
+        return  get_list_or_404(RegistrarDespesa.objects.all())
 
 
 def campo_vazio(campo):

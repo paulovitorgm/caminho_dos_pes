@@ -1,6 +1,6 @@
 from django.contrib import admin
-from financeiro.formularios import Registrar_venda
-from financeiro.formularios import Registrar_despesa
+from financeiro.formularios import RegistrarVenda
+from financeiro.formularios import RegistrarDespesa
 
 
 
@@ -20,5 +20,5 @@ class Registro_de_despesa(admin.ModelAdmin):
     list_per_page = 20
     search_fields = ["produtos", "fornecedor", "pagamento"]
 
-admin.site.register(Registrar_venda, Registro_de_venda)
-admin.site.register(Registrar_despesa, Registro_de_despesa)
+admin.site.register(RegistrarVenda, Registro_de_venda)
+admin.site.register(RegistrarDespesa, Registro_de_despesa)

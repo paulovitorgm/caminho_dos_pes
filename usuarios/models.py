@@ -1,7 +1,6 @@
+from django.contrib.auth.models import User
 from django.db import models
 
+
 class Usuario(models.Model):
-    nome = models.CharField(max_length=100)
-    sobrenome = models.CharField(max_length=100)
-    email = models.EmailField(max_length=160)
-    senha = models.CharField(max_length=36)
+    id_usuario = models.ForeignKey(User, on_delete=models.CASCADE)

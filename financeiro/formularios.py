@@ -1,7 +1,7 @@
 from django import forms
 from django.forms.widgets import DateInput
-from .models.registrar_venda import Registrar_venda
-from .models.registrar_despesas import Registrar_despesa
+from .models.registrar_venda import RegistrarVenda
+from .models.registrar_despesas import RegistrarDespesa
 
 
 
@@ -15,7 +15,7 @@ class Venda(forms.ModelForm):
     pagamento = forms.ChoiceField(label='Forma de pagamento',choices=meios_de_pagamento)
 
     class Meta:
-        model = Registrar_venda
+        model = RegistrarVenda
         exclude = ['']
         
 
@@ -29,5 +29,5 @@ class Despesa(forms.ModelForm):
     observacoes = forms.CharField(label='Observações', required=False, widget=forms.Textarea(attrs={'placeholder':'Ex: Produto "x" mudou a composição.'}))
 
     class Meta:
-        model = Registrar_despesa
+        model = RegistrarDespesa
         exclude = ['']
