@@ -1,33 +1,33 @@
+from django.db import IntegrityError
 from django.shortcuts import render, redirect
+from django.core.exceptions import ValidationError
+from django.contrib import messages
 from django.contrib.auth import login, logout, authenticate
 from django.contrib.auth.models import User
-from django.contrib import messages
 from django.contrib.auth.decorators import login_required
-from .formulario import UsuarioForm
+
+from usuarios.forms import EditaUsuarioForm
+from usuarios.forms.login import LoginForm
+from usuarios.forms.cadastrar_usuario import UsuarioForm
 
 
 def fazer_login(request):
     if request.user.is_authenticated:
         messages.error(request, 'Você já fez login.')
         return redirect('dashboard')
+    form = LoginForm()
     if request.method == 'POST':
-        usuario = request.POST['email']
-        senha = request.POST['senha']
-
-        if campo_vazio(usuario) or campo_vazio(senha):
-            messages.error(request, 'Os campos email e senha não podem ficar em branco.')
-            return redirect('login')
-
-        user = authenticate(request, username=usuario, password=senha)
-
-        if user is None:
-            messages.error(request, "Usuário ou senha inválidos.")
-            return redirect('login')
-
+        form = LoginForm(request.POST)
+        user = authenticate(username=request.POST.get('username'), password=request.POST.get('password'))
         if user is not None:
             login(request, user)
-            return redirect('index')
-    return render(request, 'login.html')
+            messages.success(request, "Login realizado com sucesso.")
+            return redirect("index")
+        else:
+            messages.error(request, "Erro ao fazer login, tente novamente.")
+
+    contexto = {'form': form}
+    return render(request, 'registration/login.html', contexto)
 
 
 @login_required(login_url='login')
@@ -37,7 +37,7 @@ def fazer_logout(request):
 
 
 def criar_usuario(request):
-    if verifica_se_logado(request):
+    if request.user.is_authenticated:
         messages.error(request, 'Você já fez login.')
         return redirect('index')
     form = UsuarioForm()
@@ -57,9 +57,20 @@ def criar_usuario(request):
     return render(request, 'criar_usuario.html', contexto)
 
 
-def campo_vazio(campo):
-    return not campo.strip()
+@login_required(login_url='login')
+def editar_usuario(request):
+    form = EditaUsuarioForm(instance=request.user)
+    contexto = {'form': form}
 
+    if request.method == 'POST':
+        form = EditaUsuarioForm(request.POST, instance=request.user)
+        if form.is_valid():
+            try:
+                form.save()
+                messages.success(request, "Usuario alterado com sucesso")
+                return redirect('index')
+            except (IntegrityError, ValidationError) as e:
+                messages.error(request, f'Erro ao editar usuário: {e}')
+                return redirect('editar_usuario')
 
-def verifica_se_logado(request):
-    return request.user.is_authenticated
+    return render(request, 'registration/editar_usuario.html', contexto)

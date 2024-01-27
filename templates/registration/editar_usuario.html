@@ -1,0 +1,26 @@
+{% extends '../partials/_base.html' %}
+{% load static %}
+
+{% block content %}
+{% include '../partials/_cabecalho.html' %}
+<main>
+    <form action="{% url 'editar_usuario' %}" method="POST" class="p-3">
+        {% csrf_token %}
+        {% include 'partials/_alertas.html' %}
+            {% for campo in form %}
+                <div class="form-floating mb-3">
+                    {{ campo }}
+                        <label for="{{ campo.id_for_label }}">{{ campo.label }}</label>
+                    {{ campo.errors }}
+                </div>
+            {% endfor %}
+            <div class="div-botoes">
+                <a href="{% url 'index' %}" class="botao-limpar">Cancelar</a>
+                <input type="submit" value="Salvar" class="botao-salvar">
+            </div>
+    </form>
+</main>
+
+{% include '../partials/_footer.html' %}
+
+{% endblock %}

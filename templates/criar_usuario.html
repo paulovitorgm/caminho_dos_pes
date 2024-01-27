@@ -3,9 +3,10 @@
 {% block content %}
 {% include 'partials/_cabecalho.html' %}
 
-{% include 'partials/_alertas.html' %}
+
     <form action="{% url 'criar_usuario' %}" method="POST" class="criar__usuario">
         {% csrf_token %}
+        {% include 'partials/_alertas.html' %}
         {% for campo in form %}
             <div class="form-floating mb-3">
                 {{ campo }}
