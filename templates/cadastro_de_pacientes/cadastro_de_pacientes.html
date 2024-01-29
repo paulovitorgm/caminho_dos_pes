@@ -4,18 +4,19 @@
 {% block content %}
 {% include 'partials/_cabecalho.html' %}
 
-
 <main>
     <form action="{% url 'cadastro' %}" method="POST">
         {% csrf_token %}
         {% include 'partials/_alertas.html' %}
         
-        {% for campo in cadastro_de_pacientes %}
+        {% for campo in form %}
             <div class="form-floating mb-3">
                 {{ campo }}
-                <label for="{{ campo.id_for_label}}">{{ campo.label }}</label>
+                    <label for="{{ campo.id_for_label }}">{{ campo.label }}</label>
+                {{ campo.errors }}
             </div>
         {% endfor %}
+
         <div class="div-botoes">
             <input type="reset" value="Limpar" class="botao-limpar">
             <input type="submit" value="Salvar" class="botao-salvar">

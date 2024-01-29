@@ -1,7 +1,7 @@
 from django import forms
 from django.contrib.auth.models import User
 from django.core.exceptions import ValidationError
-from usuarios.forms.materiais_em_comum import lista_caracteres
+from apps.materiais_em_comum import lista_caracteres
 
 
 class UsuarioForm(forms.ModelForm):

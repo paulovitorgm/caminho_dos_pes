@@ -17,24 +17,25 @@
                 </div>
             </div>
         </div>
-
-    {% if not user.is_authenticated %}
-        <div class="container-fluid">
-          <a class="navbar-brand" href="{% url 'index' %}">Início</a>
-          <a class="navbar-brand" href="{% url 'login' %}">Login</a>
-          <a class="navbar-brand" href="{% url 'criar_usuario' %}">Criar conta</a>
-        </div>  
-    {% else %}
-        <div class="container-fluid">
-            <a class="navbar-brand" href="{% url 'index' %}">Início</a>
-            <a class="navbar-brand" href="{% url 'cadastro' %}">Cadastrar paciente</a>
-            <a class="navbar-brand" href="{% url 'busca' %}">Anamnese</a>
-            <a class="navbar-brand" href="{% url 'registrar_procedimento' %}">Registrar venda</a>
-            <a class="navbar-brand" href="{% url 'registrar_despesa' %}">Registrar despesa</a>
-            <a class="navbar-brand" href="{% url 'entradas' %}">Entradas</a>
-            <a class="navbar-brand" href="{% url 'saidas' %}">Saídas</a>
-            <a class="navbar-brand" href="{% url 'logout' %}">Logout</a>
-        </div>
-    {% endif %}
+    </nav>
+    <nav class="cabecalho navbar navbar-expand-lg " data-bs-theme="dark">
+        {% if not user.is_authenticated %}
+            <div class="container-fluid">
+              <a class="navbar-brand" href="{% url 'index' %}">Início</a>
+              <a class="navbar-brand" href="{% url 'login' %}">Login</a>
+              <a class="navbar-brand" href="{% url 'criar_usuario' %}">Criar conta</a>
+            </div>
+        {% else %}
+            <div class="container-fluid">
+                <a class="navbar-brand" href="{% url 'index' %}">Início</a>
+                <a class="navbar-brand" href="{% url 'cadastro' %}">Cadastrar paciente</a>
+                <a class="navbar-brand" href="{% url 'busca' %}">Anamnese</a>
+                <a class="navbar-brand" href="{% url 'registrar_procedimento' %}">Registrar venda</a>
+                <a class="navbar-brand" href="{% url 'registrar_despesa' %}">Registrar despesa</a>
+                <a class="navbar-brand" href="{% url 'entradas' %}">Entradas</a>
+                <a class="navbar-brand" href="{% url 'saidas' %}">Saídas</a>
+                <a class="navbar-brand" href="{% url 'logout' %}">Logout</a>
+            </div>
+        {% endif %}
     </nav>
 </header>

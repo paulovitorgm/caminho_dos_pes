@@ -10,8 +10,8 @@ from django.contrib.auth.decorators import login_required
 
 @login_required(login_url='login')
 def cadastro_de_pacientes(request):
-   formulario = Cadastro_de_paciente()
-   contexto = {'cadastro_de_pacientes' : formulario}
+   form = Cadastro_de_paciente()
+   contexto = {'form': form}
    
    if request.method == 'POST':
       nome_paciente = request.POST['nome_paciente']
