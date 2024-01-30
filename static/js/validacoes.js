@@ -7,7 +7,7 @@ function bloquear_numeros(input) {
     input.value = input.value.replace(regex, '');
 }
 function receber_apenas_letras(input) {
-    const regex = /[^a-zA-Z ]/g;
+    const regex = /[^a-zA-Zç ]/g;
     input.value = input.value.replace(regex, '');
 }
 function receber_apenas_numeros(input){

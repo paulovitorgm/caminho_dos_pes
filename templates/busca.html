@@ -9,13 +9,12 @@
         {% if busca %}
             <ul>    
                 {% for resultado in busca %}
-                    <a href="{% url 'anamnese' resultado.id%}">
+                    <a href="{% url 'anamnese' resultado.id %}">
                         <li class="item__lista--busca">
                             {{ resultado.nome_paciente}} 
                             {{ resultado.sobrenome_paciente }}
                         </li>
                     </a>
-                   
                 {% endfor %}
             </ul>
         {% endif %}
@@ -27,14 +26,14 @@
 
     <form action="{% url 'busca' %}" method="GET">
         {% csrf_token %}
-        <div class="div-formulario">
+        {% for campo in form %}
             <div class="form-floating mb-3">
-                <input type="text" class="form-control" name="busca" placeholder="Ex: Paulo Vitor" required autocomplete="off">
-                <label for="busca">Encontre um paciente</label>
+                {{ campo }}
+                <label for="{{ campo.id_for_label }}">{{ campo.label }}</label>
+                {{ campo.errors }}
             </div>
-            
-            <input type="submit" value="Buscar" class="botao-salvar" >
-        </div>
+        {% endfor %}
+        <input type="submit" value="Buscar" class="botao-salvar" >
     </form>
     
     

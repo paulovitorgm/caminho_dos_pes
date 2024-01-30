@@ -4,6 +4,7 @@ from django.core.exceptions import ValidationError
 from cadastro_de_pacientes.models.cadastro_pacientes import CadastroDePaciente
 from apps.materiais_em_comum import lista_caracteres, sexo_op
 
+from datetime import timedelta, date
 
 class CadastroDePacienteForm(forms.ModelForm):
     nome_paciente = forms.CharField(label='Nome do paciente',
@@ -71,3 +72,9 @@ class CadastroDePacienteForm(forms.ModelForm):
             if not i.isnumeric():
                 raise ValidationError(f'O caractere {i} é inválido.')
         return telefone
+
+    def clean_primeiro_atendimento(self):
+        data = self.cleaned_data.get("primeiro_atendimento")
+        if data > date.today():
+            raise ValidationError(f'A data não pode ser posterior ao dia de hoje.')
+        return data
