@@ -2,7 +2,7 @@ from django import forms
 from django.core.exceptions import ValidationError
 
 from cadastro_de_pacientes.models.cadastro_pacientes import CadastroDePaciente
-from apps.materiais_em_comum import lista_caracteres
+from apps.materiais_em_comum import lista_caracteres, sexo_op
 
 
 class CadastroDePacienteForm(forms.ModelForm):
@@ -35,15 +35,13 @@ class CadastroDePacienteForm(forms.ModelForm):
                                                                          'autocomplete': 'off',
                                                                          'class': 'form-control'}), )
 
-    email = forms.EmailField(label='E-mail',
+    email = forms.CharField(label='E-mail',
                              max_length=150,
                              strip=True,
                              required=False,
                              widget=forms.EmailInput(attrs={'placeholder': 'email@email.com',
                                                             'autocomplete': 'off',
                                                             'class': 'form-control'}))
-
-    sexo_op = (('M', 'Masculino'), ('F', 'Feminino'))
 
     sexo = forms.ChoiceField(label='Sexo',
                              choices=sexo_op,
