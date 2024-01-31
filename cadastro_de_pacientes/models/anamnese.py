@@ -6,9 +6,9 @@ from apps.materiais_em_comum import escolha
 class Anamnese(models.Model):
     """paciente, acompanhamento_medico, medicamento_em_uso, diabetico, hepatite, hiv,
        alergico, teve_cancer, gravidez, lactante, hipertensao, hipotensao"""
-    paciente = models.ForeignKey(CadastroDePaciente,
+    paciente = models.OneToOneField(CadastroDePaciente,
                                  on_delete=models.CASCADE,
-                                 related_name='anamneses')
+                                 related_name='anamnese')
 
     acompanhamento_medico = models.CharField(max_length=100,
                                      blank=True,

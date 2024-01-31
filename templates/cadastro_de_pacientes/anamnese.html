@@ -4,7 +4,7 @@
 {% include 'partials/_cabecalho.html' %}
 
 <main>
-    <form action="{% url 'salvar_anamnese' %}" method="POST" class="anamnese__formulario">
+    <form action="{% url 'salvar_anamnese' anamnese_id %}" method="POST" class="anamnese__formulario">
         {% csrf_token %}   
         {% for campo in form %}
             <div class="form-floating mb-3">
@@ -13,7 +13,10 @@
                 {{ campo.errors }}
             </div>
         {% endfor %}
-
+        <div class="div-botoes">
+            <input type="reset" value="Limpar" class="botao-limpar">
+            <input type="submit" value="Criar" class="botao-salvar">
+        </div>
     </form>
 
 </main>

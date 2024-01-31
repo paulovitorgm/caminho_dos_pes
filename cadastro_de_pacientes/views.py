@@ -1,5 +1,4 @@
 from django.shortcuts import render, redirect
-from django.contrib.auth.models import User
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
 
@@ -52,13 +51,16 @@ def busca(request):
 @login_required(login_url='login')
 def salvar_anamnese(request, anamnese_id):
     paciente = AnamneseForm()
-
-    return render(request, 'busca.html')
+    contexto = {'form': paciente, 'anamnese_id': anamnese_id}
+    return render(request, 'busca.html', contexto)
 
 
 @login_required(login_url='login')
-def anamnese(request):
-    form = AnamneseForm(request)
+def anamnese(request, paciente_id):
+    form = AnamneseForm()
+
+
     contexto = {'form': form}
-    return render(request, 'cadastro_de_pacientes/anamnese.html')
+
+    return render(request, 'cadastro_de_pacientes/anamnese.html', contexto)
 
